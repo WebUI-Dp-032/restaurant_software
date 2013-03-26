@@ -10,6 +10,7 @@ gem 'therubyracer'
 gem "rails-backbone"
 
 group :assets do
+  gem 'less-rails'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'sass-rails', "~> 3.2.3"
 #  gem 'coffee-rails', "~> 3.2.3"
