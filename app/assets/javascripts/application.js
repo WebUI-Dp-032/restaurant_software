@@ -21,5 +21,3 @@
 //= require bootstrap
 //= require backbone-mediator
 //= require start
-
-
