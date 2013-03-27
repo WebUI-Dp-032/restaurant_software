@@ -18,4 +18,8 @@
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone/restaurant_software
-//= require_tree .
+//= require bootstrap
+//= require backbone-mediator
+//= require start
+
+
