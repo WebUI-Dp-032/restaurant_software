@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 679fc6ee91b8e77e4f30625ca574c142ac3d5782
+  specs:
+    twitter-bootstrap-rails (2.2.6)
+      actionpack (>= 3.1)
+      execjs
+      railties (>= 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -40,7 +49,12 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.2)
     diff-lcs (1.2.1)
+    ejs (1.0.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -86,6 +100,10 @@ GEM
       activesupport (= 3.2.3)
       bundler (~> 1.0)
       railties (= 3.2.3)
+    rails-backbone (0.7.2)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      railties (>= 3.1.0)
     rails3-generators (1.0.0)
       railties (>= 3.0.0)
     railties (3.2.3)
@@ -157,9 +175,11 @@ DEPENDENCIES
   mocha
   pg
   rails (= 3.2.3)
+  rails-backbone
   rails3-generators
   rspec
   rspec-rails
   sass-rails (~> 3.2.3)
   therubyracer
+  twitter-bootstrap-rails!
   uglifier
