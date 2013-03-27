@@ -53,6 +53,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    commonjs (0.2.6)
     diff-lcs (1.2.1)
     ejs (1.0.0)
     erubis (2.7.0)
@@ -72,6 +73,11 @@ GEM
     json (1.7.7)
     launchy (2.2.0)
       addressable (~> 2.3)
+    less (2.3.1)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.2)
+      actionpack (>= 3.1)
+      less (~> 2.3.1)
     libv8 (3.11.8.13)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -172,6 +178,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
+  less-rails
   mocha
   pg
   rails (= 3.2.3)
