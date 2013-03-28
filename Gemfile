@@ -1,13 +1,14 @@
 source "http://rubygems.org"
 gem "pg"
 gem "rails", "3.2.3"
-gem "haml"
+
 gem "rails3-generators"
 
 gem 'jquery-rails'
 gem 'therubyracer'
 
 gem "rails-backbone"
+gem "ejs"
 
 group :assets do
   gem 'less-rails'
