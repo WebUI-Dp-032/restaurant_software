@@ -1,8 +1,6 @@
 var OrderView = Backbone.View.extend({
-  // el: $("#order"),
+  el: $("#order-container"),
 
-  tagName: "div", 
-  id: "order",
   template: JST['backbone/templates/OrderTemplate'],
 
   initialize: function() {
@@ -11,7 +9,7 @@ var OrderView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template());
+    $("#order-container").html(this.template());
     return this;
   },
 

@@ -29,3 +29,110 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+
+// .container {
+//   width: 940px;
+// }
+
+.centered {
+  text-align: center;
+}
+.wrap {
+  border-right: 1px solid #d4d4d4;
+  height: 650px;
+}
+.span4 .wrap {
+  border: none;
+}
+.capacity {
+  width: 38px;
+  float: left;
+}
+.static {
+  width: 220px;
+  height: 30px;
+  overflow: auto;
+
+  border: 1px solid #000;
+}
+.dishes {
+  width:180px; 
+  height:30px; 
+  overflow:auto;
+}
+#table-module, #menu-module, #check-module{
+  height: 550px;
+  overflow: auto;
+}
+/*Tables module*/
+#table-module .desk {
+  padding-top: 20px;
+  margin: 10px;
+  float: left;
+  width: 40px;
+  height: 30px;
+  font-size: 24pt;
+}
+/*-----------*/
+/*Menu module*/
+#menu {
+  margin: 0;
+  padding: 0;
+}
+#menu li {
+  list-style-type: none;
+  margin-top: 20px;
+  padding: 0;
+}
+#menu .menu-group {
+  font-size: 24pt;
+}
+#menu .menu-categories {
+  font-size: 22pt;
+  margin: 10px 0 0 10px;
+}
+#menu .menu-dishes {
+  font-size: 20pt;
+  margin:10px 0;
+}
+#menu .menu-dishes small {
+  margin-left:20px;
+}
+/*---------------*/
+/* Check module*/
+#order-module table thead tr th, 
+#order-module table tbody tr td, 
+#order-module table tfoot tr td {
+  vertical-align: middle;
+  text-align: center;
+}
+/*Static table width*/
+#order-module table {
+  width: 300px;
+}
+/*Static title-cell*/
+#order-module table thead tr th[colspan='2'] + th {
+  width: 78px;
+}
+/*Static food-cell*/
+#order-module table tbody tr td:first-child + td {
+  width:78px;
+}
+/*if (overflow) this style*/
+#order-module table tbody tr td:first-child + td div.overflow {
+  width: 78px;
+  overflow: auto;
+}
+#order-module table tfoot tr td[colspan='2'] {
+  padding-right: 24px;
+  text-align: right;
+}
+/*Footer*/
+footer {
+  margin-top:20px;
+  padding-top: 5px; 
+  border-top: 1px solid #d4d4d4;
+  font-size: 13pt;
+}
+/*------*/
