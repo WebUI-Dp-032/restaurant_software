@@ -1,13 +1,9 @@
 var OrderItemView = Backbone.View.extend({
 
-  tagName: "div",
+  tagName: "tr",
   className: "order-item",
 
-  // template: _.template("<%= title %> <%= number %> <%= cost %> грн."),
   template: JST['backbone/templates/OrderItemTemplate'],
-
-
-
 
   events: {
 

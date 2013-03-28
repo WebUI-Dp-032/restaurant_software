@@ -1,7 +1,7 @@
 var OrderCollection = Backbone.Collection.extend({
 
   model: OrderItemModel,
-  localStorage: new Backbone.LocalStorage("OrderList"),
+  url: "/orders/1.json",
   table: 1,
 
   initialize: function() {
@@ -15,26 +15,18 @@ var OrderCollection = Backbone.Collection.extend({
   },
 
   loadOrder: function(table) {
+    Backbone.Mediator.pub("clearOrderView");
     this.reset();
     this.table = table;
+    this.url = "/orders/" + table + ".json";
     this.fetch();
   },
 
-  parse: function(response) {
-    var result = [];
-    response.forEach(function(item) {
-      if (item.table == Weiter.Order.OrderCollection.table) {
-        result.push(item);
-      }
-    });
-
-    return result;
-  },
-
   addFood: function(food) {
-    var item = new OrderItemModel({table: this.table,
+    var item = new OrderItemModel({table_id: this.table,
                                    title: food.title,
                                    cost: food.cost,
+                                   summary: food.cost,
                                    number: 1});
     this.add(item);
     Backbone.Mediator.pub("addItemToOrder", item);

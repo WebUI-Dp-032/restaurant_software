@@ -6,6 +6,8 @@ var OrderView = Backbone.View.extend({
   initialize: function() {
     Backbone.Mediator.sub("addItemToOrder", this.renderOne, this);
     Backbone.Mediator.sub("addAllFood", this.renderAll, this);
+    Backbone.Mediator.sub("clearOrderView", this.clearView, this);
+
   },
 
   render: function() {
@@ -16,7 +18,7 @@ var OrderView = Backbone.View.extend({
   renderOne: function(item) {
     var view = new OrderItemView({model: item});
     // this.$el.append(view.render().el);
-    $("#order").append(view.render().el);
+    $("#order-items").append(view.render().el);
   },
 
   renderAll: function() {
@@ -24,6 +26,10 @@ var OrderView = Backbone.View.extend({
     collection.forEach(function(item) {
       Weiter.Order.OrderView.renderOne(item);
     });
+  },
+
+  clearView: function() {
+    $("#order-items").html("");
   }
 
 
