@@ -8,7 +8,8 @@
   events: {
     "click #minus_rows" : "delItem",
     "click #decrease" : "decreaseItem",
-    "click .overflow" : "changeStatus"
+    "click .overflow" : "changeStatus",
+    "click #minus_rows" : "delItem"
   },
 
   render: function() {
