@@ -1,7 +1,7 @@
 ﻿var OrderItemView = Backbone.View.extend({
 
   tagName: "tr",
-  className: "order-item", 
+  className: "order-item",
 
   template: JST['backbone/templates/OrderItemTemplate'],
 
@@ -16,7 +16,7 @@
 
   delItem: function() {
       Weiter.Order.OrderCollection.url = "foods/" ;
-      this.model.destroy({success: function(model, response) {      
+      this.model.destroy({success: function(model, response) {
           console.log ("Success");
           },
         error: function(model, response){

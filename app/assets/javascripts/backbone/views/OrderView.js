@@ -7,12 +7,12 @@ var OrderView = Backbone.View.extend({
     Backbone.Mediator.sub("addItemToOrder", this.renderOne, this);
     Backbone.Mediator.sub("addAllFood", this.renderAll, this);
     Backbone.Mediator.sub("clearOrderView", this.clearView, this);
-
+    Backbone.Mediator.sub("changeTotal", this.renderTotal, this);
   },
 
   render: function() {
     var total = Weiter.Order.OrderCollection.total;
-    $("#order-container").html(this.template({total: total}));
+    $("#order-container").html(this.template({total: 0}));
     return this;
   },
 
@@ -20,7 +20,7 @@ var OrderView = Backbone.View.extend({
     var view = new OrderItemView({model: item});
     // this.$el.append(view.render().el);
     $("#order-items").append(view.render().el);
-    $("#total").html(Weiter.Order.OrderCollection.total);
+    // $("#total").html(Weiter.Order.OrderCollection.total);
   },
 
   renderAll: function() {
@@ -28,7 +28,11 @@ var OrderView = Backbone.View.extend({
     collection.forEach(function(item) {
       Weiter.Order.OrderView.renderOne(item);
     });
-    $("#total").html(Weiter.Order.OrderCollection.total);
+    // $("#total").html(collection.total);
+  },
+
+  renderTotal: function() {
+    $("#total").html(Weiter.Order.OrderCollection.order.get("total"));
   },
 
   clearView: function() {
