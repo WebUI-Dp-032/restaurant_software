@@ -2,6 +2,10 @@ var OrderView = Backbone.View.extend({
   el: $("#order-container"),
 
   template: JST['backbone/templates/OrderTemplate'],
+  
+    event: {
+    "click #clear_order" : "clearOrder"
+  },
 
   initialize: function() {
     Backbone.Mediator.sub("addItemToOrder", this.renderOne, this);
@@ -37,7 +41,22 @@ var OrderView = Backbone.View.extend({
 
   clearView: function() {
     $("#order-items").html("");
+  },
+  
+  clearOrder: function() {
+    Weiter.Order.OrderCollection.url = "orders/" ;
+    Weiter.Order.OrderCollection.clearTotalSum();
+    
+      // this.model.destroy({success: function(model, response) {      
+          // console.log ("Success");
+          // },
+        // error: function(model, response){
+          // console.log ("Error");
+        // }
+      // });
+    $("#order-items").html("");
   }
+
 
 
 
