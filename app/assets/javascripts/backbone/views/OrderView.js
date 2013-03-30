@@ -1,10 +1,13 @@
 var OrderView = Backbone.View.extend({
-  el: $("#order-container"),
+  // el: $("#order-container"),
+  tagName: "div",
+  className: "wrap",
 
   template: JST['backbone/templates/OrderTemplate'],
-  
-    event: {
-    "click #clear_order" : "clearOrder"
+
+  events: {
+    "click #cancel_order" : "cancelOrder",
+    "click #close_order" : "closeOrder"
   },
 
   initialize: function() {
@@ -16,15 +19,13 @@ var OrderView = Backbone.View.extend({
 
   render: function() {
     var total = Weiter.Order.OrderCollection.total;
-    $("#order-container").html(this.template({total: 0}));
+    this.$el.html(this.template({total: 0}));
     return this;
   },
 
   renderOne: function(item) {
     var view = new OrderItemView({model: item});
-    // this.$el.append(view.render().el);
     $("#order-items").append(view.render().el);
-    // $("#total").html(Weiter.Order.OrderCollection.total);
   },
 
   renderAll: function() {
@@ -32,7 +33,6 @@ var OrderView = Backbone.View.extend({
     collection.forEach(function(item) {
       Weiter.Order.OrderView.renderOne(item);
     });
-    // $("#total").html(collection.total);
   },
 
   renderTotal: function() {
@@ -41,20 +41,23 @@ var OrderView = Backbone.View.extend({
 
   clearView: function() {
     $("#order-items").html("");
+    $("#total").html("0");
   },
-  
-  clearOrder: function() {
-    Weiter.Order.OrderCollection.url = "orders/" ;
-    Weiter.Order.OrderCollection.clearTotalSum();
-    
-      // this.model.destroy({success: function(model, response) {      
-          // console.log ("Success");
-          // },
-        // error: function(model, response){
-          // console.log ("Error");
-        // }
-      // });
-    $("#order-items").html("");
+
+  cancelOrder: function() {
+    console.warn("cancelled");
+    Backbone.Mediator.pub("cancelOrder");
+    this.clearView();
+  },
+
+  closeOrder: function() {
+    console.log("closed!");
+    Backbone.Mediator.pub("closeOrder");
+    this.clearView();
+  },
+
+  allclick: function() {
+    console.error("click");
   }
 
 

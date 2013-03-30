@@ -8,6 +8,9 @@ var OrderCollection = Backbone.Collection.extend({
   initialize: function() {
     Backbone.Mediator.sub("selectTable", this.loadOrder, this);
     Backbone.Mediator.sub("addFoodInOrder", this.addFood, this);
+    Backbone.Mediator.sub("cancelOrder", this.cancelOrder, this);
+    Backbone.Mediator.sub("closeOrder", this.closeOrder, this);
+
     this.on("reset", this.addAllFood, this);
   },
 
@@ -34,6 +37,7 @@ var OrderCollection = Backbone.Collection.extend({
     this.order.addToTotal(food.cost);
     if (this.status === "free") {
       this.makeBusy();
+      this.status = "busy";
     }
     Backbone.Mediator.pub("addItemToOrder", item);
   },
@@ -47,13 +51,11 @@ var OrderCollection = Backbone.Collection.extend({
     if (this.length > 0) {
       if(this.status === "free") {
         this.order.createOrder();
-        this.status = "busy";
       }
       if(this.status === "busy") {
         this.order.loadOrder(this.models[0].get("order_id"));
       }
     }
-
   },
 
   saveOrder: function() {
@@ -62,11 +64,31 @@ var OrderCollection = Backbone.Collection.extend({
     if (this.length > 0) {
       this.url = "/foods";
       this.forEach(function(food) {
-        console.log("this.order_id", order_id);
+        console.log("save food this.order_id", order_id);
         food.set({order_id: order_id});
         food.save();
       });
     }
+  },
+
+  cancelOrder: function() {
+    this.saveOrder();
+    this.order.url = "/orders/" + this.order.get("id");
+    console.warn("url-cancel, id", this.order.get("id"));
+    this.order.save({status: "cancelled"});
+    this.status = "free";
+    // Backbone.Mediator.pub("")
+    console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
+  },
+
+  closeOrder: function() {
+    this.saveOrder();
+    this.order.url = "/orders/" + this.order.get("id");
+    console.warn("url-closed, id", this.order.get("id"));
+    this.order.save({status: "closed"});
+    this.status = "free";
+    // Backbone.Mediator.pub("")
+    console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
   }
 
 });

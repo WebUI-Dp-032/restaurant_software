@@ -10,6 +10,10 @@ var OrderModel = Backbone.Model.extend({
 
   url: "/orders",
 
+  initialize: function() {
+    Backbone.Mediator.sub("deleteItemSum", this.subFromTotal, this);
+  },
+
   createOrder: function() {
     this.url = "/orders";
     Backbone.Mediator.pub("tableIsBusy", this.table_id);
@@ -26,12 +30,18 @@ var OrderModel = Backbone.Model.extend({
   },
 
   saveOrder: function() {
+    console.warn("url-save, id", this.get("id"));
     this.url = "/orders/" + this.get("id");
     this.save();
   },
 
   addToTotal: function(sum) {
     this.set({total: this.get("total") + sum });
+    Backbone.Mediator.pub("changeTotal");
+  },
+
+  subFromTotal: function(sum) {
+    this.set({total: this.get("total") - sum });
     Backbone.Mediator.pub("changeTotal");
   },
 

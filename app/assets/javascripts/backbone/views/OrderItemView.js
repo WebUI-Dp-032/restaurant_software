@@ -8,8 +8,7 @@
   events: {
     "click #minus_rows" : "delItem",
     "click #decrease" : "decreaseItem",
-    "click .overflow" : "changeStatus",
-    "click #minus_rows" : "delItem"
+    "click .overflow" : "changeStatus"
   },
 
   render: function() {
@@ -18,41 +17,40 @@
   },
 
   delItem: function() {
-      Weiter.Order.OrderCollection.url = "foods/" ;
-      this.model.destroy({success: function(model, response) {
-          console.log ("Success");
-          },
-        error: function(model, response){
-          console.log ("Error");
-        }
-      });
-      Weiter.Order.OrderView.clearView();
-      Weiter.Order.OrderView.renderAll();
-      
-      var summary = this.model.get("summary");
-      Backbone.Mediator.pub("deleteItemSum", summary);
+    var summary = this.model.get("summary");
+    Weiter.Order.OrderCollection.url = "foods/" ;
+    this.model.destroy({success: function(model, response) {
+        console.log ("Success");
+        },
+      error: function(model, response){
+        console.log ("Error");
+      }
+    });
+    Weiter.Order.OrderView.clearView();
+    Weiter.Order.OrderView.renderAll();
+
+    Backbone.Mediator.pub("deleteItemSum", summary);
   },
-  
+
   decreaseItem: function() {
       Weiter.Order.OrderCollection.url = "foods/" ;
       var id_number = this.model.get("number");
       id_number -= 1;
-    
+
       this.model.set("number", id_number);
       this.model.save({number: id_number});
-      
+
       var cost = this.model.get("summary") - this.model.get("cost");
-      
       this.model.set("cost", cost);
       this.model.save({cost: cost});
-      
+
       Weiter.Order.OrderView.clearView();
       Weiter.Order.OrderView.renderAll();
-  
-      var cost = this.model.get("cost"); //пересчитать total
+
+      var cost = this.model.get("cost");//пересчитать total
       Backbone.Mediator.pub("decreaseItemSum", cost);
   },
-  
+
   changeStatus: function() {
     Weiter.Order.OrderCollection.url = "foods/" ;
     var status = this.model.get("state");

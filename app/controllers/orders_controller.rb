@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.where({table_id: params[:id]}).first()
+    @order = Order.where({table_id: params[:id], status: "opened"}).first()
     foods = @order ? @order.foods : []
     respond_to do |format|
       format.html # show.html.erb
