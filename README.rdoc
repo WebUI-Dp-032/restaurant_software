@@ -5,11 +5,20 @@ For developers:
 Модуль "Чек" слушает такие события от медиатора:
 
 от модуля "Столы" - выбор активного стола для загрузки чека:
-Backbone.Mediator.pub("selectTable", 1);
+Backbone.Mediator.pub("selectTable", table);
+где table - хеш вида {table_id: 1, status: "free" } 
+table_id - не номер, а именно id стола, который в бд прописан.
+status - статус стола.
 
 от модуля "Меню" - добавление пункта меню в чек:
 Backbone.Mediator.pub("addFoodInOrder", item);
 где item - хеш вида {title:"Title food", cost:50}
+
+
+Модуль "Чек" посылает такие сообщения через медиатор:
+
+Для модуля "Столы" - сменить статус стола на "busy" - 
+Backbone.Mediator.pub("tableIsBusy", table_id);
 
 =====
 

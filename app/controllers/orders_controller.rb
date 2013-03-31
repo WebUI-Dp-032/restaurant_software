@@ -10,10 +10,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  def get_order
+    @order = Order.find(params[:id]);
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @order }
+    end
+  end
+
+
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.where({table_id: params[:id]}).first()
+    @order = Order.where({table_id: params[:id], status: "opened"}).first()
     foods = @order ? @order.foods : []
     respond_to do |format|
       format.html # show.html.erb

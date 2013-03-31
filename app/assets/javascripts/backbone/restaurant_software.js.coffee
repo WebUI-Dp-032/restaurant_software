@@ -1,5 +1,6 @@
 #= require_self
 #= require_tree ./templates
+#= require ./models/OrderModel
 #= require ./models/OrderItemModel
 #= require ./models/OrderCollection
 #= require ./views/TablesView

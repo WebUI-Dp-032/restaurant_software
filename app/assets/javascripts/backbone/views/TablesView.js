@@ -1,5 +1,8 @@
 var TablesView = Backbone.View.extend({
-  el: $("#tables-container"),
+  // el: $("#tables-container"),
+
+  tagName: "div",
+  className: "wrap",
 
   template: JST['backbone/templates/TablesTemplate'],
 

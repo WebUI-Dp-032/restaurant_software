@@ -2,7 +2,10 @@
 
 <table>
   <tr>
+    <th>Id</th>
     <th>Table</th>
+    <th>Status</th>
+    <th>Total</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,7 +13,10 @@
 
 <% @orders.each do |order| %>
   <tr>
+    <td><%= order.id %></td>
     <td><%= order.table_id %></td>
+    <td><%= order.status %></td>
+    <td><%= order.total %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>

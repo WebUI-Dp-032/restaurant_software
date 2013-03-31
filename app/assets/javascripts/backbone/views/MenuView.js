@@ -1,5 +1,8 @@
 var MenuView = Backbone.View.extend({
-  el: $("#menu-container"),
+  // el: $("#menu-container"),
+
+  tagName: "div",
+  className: "wrap",
 
   template: JST['backbone/templates/MenuTemplate'],
 
