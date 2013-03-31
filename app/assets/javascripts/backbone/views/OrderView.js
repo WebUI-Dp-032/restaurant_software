@@ -45,16 +45,7 @@ var OrderView = Backbone.View.extend({
   },
   
   clearOrder: function() {
-    Weiter.Order.OrderCollection.url = "orders/" ;
-    Weiter.Order.OrderCollection.clearTotalSum();
-    
-      // this.model.destroy({success: function(model, response) {      
-          // console.log ("Success");
-          // },
-        // error: function(model, response){
-          // console.log ("Error");
-        // }
-      // });
+    Weiter.Order.OrderCollection.cancelOrder();
     $("#order-items").html("");
     $("#total").html("0");
   },

@@ -36,22 +36,17 @@
       Weiter.Order.OrderCollection.url = "foods/" ;
       var id_number = this.model.get("number");
       if (id_number > 1)
-      {
-        id_number -= 1;
-      
-        this.model.set("number", id_number);
-        this.model.save({number: id_number});
+      {      
+        this.model.set("number", id_number--);
         
-        var cost_item = this.model.get("summary") - this.model.get("cost");
+        var summary_item = this.model.get("summary") - this.model.get("cost");
         
-        this.model.set("cost", cost_item);
-        this.model.save({cost: cost_item});
+        this.model.set("summary", summary_item);
         
         Weiter.Order.OrderView.clearView();
         Weiter.Order.OrderView.renderAll();
     
-        var cost = this.model.get("cost"); //пересчитать total
-        Backbone.Mediator.pub("decreaseItemSum", cost);
+        Backbone.Mediator.pub("decreaseItemSum", summary_item);
       }
   },
   
