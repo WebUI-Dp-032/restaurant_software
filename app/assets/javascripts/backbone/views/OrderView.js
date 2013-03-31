@@ -1,17 +1,14 @@
 var OrderView = Backbone.View.extend({
-   el: $("#order-container"),
+  //el: $("#order-container"),
   tagName: "div",
   className: "wrap",
 
   template: JST['backbone/templates/OrderTemplate'],
-  
-    event: {
-    "click #clear_order" : "clearOrder"
-  },
 
   events: {
     "click #cancel_order" : "cancelOrder",
-    "click #close_order" : "closeOrder"
+    "click #close_order" : "closeOrder",
+    "click #clear_order" : "clearOrder"
   },
 
   initialize: function() {
