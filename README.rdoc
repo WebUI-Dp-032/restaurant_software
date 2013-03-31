@@ -1,3 +1,18 @@
+Restaurant Software - Waiter Helper
+
+For developers:
+
+Модуль "Чек" слушает такие события от медиатора:
+
+от модуля "Столы" - выбор активного стола для загрузки чека:
+Backbone.Mediator.pub("selectTable", 1);
+
+от модуля "Меню" - добавление пункта меню в чек:
+Backbone.Mediator.pub("addFoodInOrder", item);
+где item - хеш вида {title:"Title food", cost:50}
+
+=====
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
