@@ -41,7 +41,7 @@ var OrderCollection = Backbone.Collection.extend({
     }
     Backbone.Mediator.pub("addItemToOrder", item);
   },
-
+  
   addAllFood: function() {
     Backbone.Mediator.pub("addAllFood");
     this.makeBusy();

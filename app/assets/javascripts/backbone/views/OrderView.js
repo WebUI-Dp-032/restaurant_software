@@ -1,5 +1,5 @@
 var OrderView = Backbone.View.extend({
-  // el: $("#order-container"),
+  //el: $("#order-container"),
   tagName: "div",
   className: "wrap",
 
@@ -7,7 +7,8 @@ var OrderView = Backbone.View.extend({
 
   events: {
     "click #cancel_order" : "cancelOrder",
-    "click #close_order" : "closeOrder"
+    "click #close_order" : "closeOrder",
+    "click #clear_order" : "clearOrder"
   },
 
   initialize: function() {
@@ -41,6 +42,11 @@ var OrderView = Backbone.View.extend({
 
   clearView: function() {
     $("#order-items").html("");
+  },
+  
+  clearOrder: function() {
+    Weiter.Order.OrderCollection.cancelOrder();
+    $("#order-items").html("");
     $("#total").html("0");
   },
 
@@ -59,8 +65,4 @@ var OrderView = Backbone.View.extend({
   allclick: function() {
     console.error("click");
   }
-
-
-
-
 });
