@@ -35,7 +35,6 @@
   },
   
   decreaseItem: function() {
-      Weiter.Order.OrderCollection.url = "foods/" ;
       var summary_item,
           id_number = this.model.get("number");
       if (id_number > 1)
@@ -51,13 +50,14 @@
   },
   
   changeStatus: function() {
-    Weiter.Order.OrderCollection.url = "foods/" ;
-    var status = this.model.get("state");
-    if(status == false){
-      this.model.set("state", status);
-      this.model.save({state: status});
-      $(this).css("text-decoration", "line-through" ); 
+    if(this.model.get("delivered") == 0){
+      this.model.set("delivered", 1);
+      this.$el.css("text-decoration", "line-through"); 
+    } else {
+      this.model.set("delivered", 0);
+      this.$el.css("text-decoration", "none"); 
     }
+    
   }
 
 });
