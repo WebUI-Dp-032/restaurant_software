@@ -11,6 +11,7 @@ var OrderCollection = Backbone.Collection.extend({
     Backbone.Mediator.sub("cancelOrder", this.cancelOrder, this);
     Backbone.Mediator.sub("closeOrder", this.closeOrder, this);
     Backbone.Mediator.sub("decreaseItemSum", this.decreaseSum, this);
+    Backbone.Mediator.sub("increaseItemSum", this.increaseSum, this);
 
     this.on("reset", this.addAllFood, this);
   },
@@ -94,6 +95,10 @@ var OrderCollection = Backbone.Collection.extend({
 
   decreaseSum: function(sum) {
     this.order.set({total:this.order.get("total") - sum});
+  },
+
+  increaseSum: function(sum) {
+    this.order.set({total:this.order.get("total") + sum});
   }
 
 });
