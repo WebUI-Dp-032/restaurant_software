@@ -3,6 +3,9 @@
 #= require ./models/OrderModel
 #= require ./models/OrderItemModel
 #= require ./models/OrderCollection
+#= require ./models/TableItemModel
+#= require ./models/TableCollection
+#= require ./views/TableItemView
 #= require ./views/TablesView
 #= require ./views/MenuView
 #= require ./views/OrderItemView
