@@ -7,8 +7,7 @@ var OrderView = Backbone.View.extend({
 
   events: {
     "click #cancel_order" : "cancelOrder",
-    "click #close_order" : "closeOrder",
-    "click #clear_order" : "clearOrder"
+    "click #close_order" : "closeOrder"
   },
 
   initialize: function() {
@@ -42,11 +41,6 @@ var OrderView = Backbone.View.extend({
 
   clearView: function() {
     $("#order-items").html("");
-  },
-  
-  clearOrder: function() {
-    Weiter.Order.OrderCollection.cancelOrder();
-    $("#order-items").html("");
     $("#total").html("0");
   },
 
@@ -60,9 +54,6 @@ var OrderView = Backbone.View.extend({
     console.log("closed!");
     Backbone.Mediator.pub("closeOrder");
     this.clearView();
-  },
-
-  allclick: function() {
-    console.error("click");
   }
+
 });
