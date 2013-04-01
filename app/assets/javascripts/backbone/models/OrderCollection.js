@@ -79,7 +79,7 @@ var OrderCollection = Backbone.Collection.extend({
     console.warn("url-cancel, id", this.order.get("id"));
     this.order.save({status: "cancelled"});
     this.status = "free";
-    // Backbone.Mediator.pub("")
+    Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
     console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
   },
 
@@ -89,7 +89,7 @@ var OrderCollection = Backbone.Collection.extend({
     console.warn("url-closed, id", this.order.get("id"));
     this.order.save({status: "closed"});
     this.status = "free";
-    // Backbone.Mediator.pub("")
+    Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
     console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
   },
 
