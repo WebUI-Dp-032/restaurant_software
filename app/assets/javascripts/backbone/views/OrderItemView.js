@@ -46,7 +46,7 @@
         Weiter.Order.OrderView.clearView();
         Weiter.Order.OrderView.renderAll();
     
-        Backbone.Mediator.pub("decreaseItemSum", summary_item);
+        Backbone.Mediator.pub("decreaseItemSum", this.model.get("cost"));
       }
   },
   
