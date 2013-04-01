@@ -7,7 +7,7 @@ var TablesView = Backbone.View.extend({
   template: JST['backbone/templates/TablesTemplate'],
 
   render: function() {
-    $("#tables-container").html(this.template());
+    this.$el.html(this.template());
     return this;
   }
 
