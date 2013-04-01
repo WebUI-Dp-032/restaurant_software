@@ -41,12 +41,12 @@
       if (id_number > 1)
       {      
         summary_item = this.model.get("summary") - this.model.get("cost");
-        this.model.set({number: id_number--, summary: summary_item});
+        this.model.set({number: --id_number, summary: summary_item});
         
         Weiter.Order.OrderView.clearView();
         Weiter.Order.OrderView.renderAll();
     
-        Backbone.Mediator.pub("decreaseItemSum", summary_item);
+        Backbone.Mediator.pub("decreaseItemSum", this.model.get("cost"));
       }
   },
   
