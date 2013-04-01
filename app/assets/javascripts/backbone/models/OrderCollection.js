@@ -95,10 +95,12 @@ var OrderCollection = Backbone.Collection.extend({
 
   decreaseSum: function(sum) {
     this.order.set({total:this.order.get("total") - sum});
+    Backbone.Mediator.pub("changeTotal");
   },
 
   increaseSum: function(sum) {
     this.order.set({total:this.order.get("total") + sum});
+    Backbone.Mediator.pub("changeTotal");
   }
 
 });

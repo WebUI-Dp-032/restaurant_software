@@ -8,7 +8,8 @@
   events: {
     "click #minus_rows" : "delItem",
     "click #decrease" : "decreaseItem",
-    "click .overflow" : "changeStatus"
+    "click .overflow" : "changeStatus",
+    "click #increase" : "increaseItem"
   },
 
   render: function() {
@@ -18,8 +19,8 @@
 
   delItem: function() {
       var summary = 0;
-      Weiter.Order.OrderCollection.url = "foods/" ;
-
+      Waiter.Order.OrderCollection.url = "foods/" ;
+      
       this.model.destroy({success: function(model, response) {      
           console.log ("Success");
           },
@@ -27,8 +28,8 @@
           console.log ("Error");
         }
       });
-      Weiter.Order.OrderView.clearView();
-      Weiter.Order.OrderView.renderAll();
+      Waiter.Order.OrderView.clearView();
+      Waiter.Order.OrderView.renderAll();
       
       summary = this.model.get("summary");
       Backbone.Mediator.pub("deleteItemSum", summary);
@@ -42,11 +43,27 @@
         summary_item = this.model.get("summary") - this.model.get("cost");
         this.model.set({number: --id_number, summary: summary_item});
         
-        Weiter.Order.OrderView.clearView();
-        Weiter.Order.OrderView.renderAll();
-    
+        // Waiter.Order.OrderView.clearView();
+        // Waiter.Order.OrderView.renderAll();
+        this.render(this.model.toJSON());
         Backbone.Mediator.pub("decreaseItemSum", this.model.get("cost"));
       }
+  },
+  
+  increaseItem: function() {
+    var id_number = this.model.get("number");
+	var summary_item = this.model.get("summary") +this.model.get("cost");
+	
+    this.model.set("number", id_number += 1);
+	this.model.set("summary", summary_item);
+    
+    console.log(summary_item);
+    // Waiter.Order.OrderView.clearView();
+    // Waiter.Order.OrderView.renderAll();
+        this.render(this.model.toJSON());
+    
+    
+	Backbone.Mediator.pub("increaseItemSum", this.model.get("cost"));
   },
   
   changeStatus: function() {
