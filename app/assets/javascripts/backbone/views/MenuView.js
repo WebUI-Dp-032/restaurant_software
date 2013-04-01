@@ -7,7 +7,7 @@ var MenuView = Backbone.View.extend({
   template: JST['backbone/templates/MenuTemplate'],
 
   render: function() {
-    $("#menu-container").html(this.template());
+    this.$el.html(this.template());
     return this;
   }
 

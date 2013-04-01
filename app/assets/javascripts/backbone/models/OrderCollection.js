@@ -10,6 +10,7 @@ var OrderCollection = Backbone.Collection.extend({
     Backbone.Mediator.sub("addFoodInOrder", this.addFood, this);
     Backbone.Mediator.sub("cancelOrder", this.cancelOrder, this);
     Backbone.Mediator.sub("closeOrder", this.closeOrder, this);
+    Backbone.Mediator.sub("decreaseItemSum", this.decreaseSum, this);
 
     this.on("reset", this.addAllFood, this);
   },
@@ -41,7 +42,7 @@ var OrderCollection = Backbone.Collection.extend({
     }
     Backbone.Mediator.pub("addItemToOrder", item);
   },
-  
+
   addAllFood: function() {
     Backbone.Mediator.pub("addAllFood");
     this.makeBusy();
@@ -89,6 +90,10 @@ var OrderCollection = Backbone.Collection.extend({
     this.status = "free";
     // Backbone.Mediator.pub("")
     console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
+  },
+
+  decreaseSum: function(sum) {
+    this.order.set({total:this.order.get("total") - sum});
   }
 
 });
