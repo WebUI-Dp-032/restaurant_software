@@ -52,10 +52,11 @@
   changeStatus: function() {
     if(this.model.get("delivered") == 0){
       this.model.set("delivered", 1);
-      this.$el.css("text-decoration", "line-through"); 
+      this.$el.toggleClass("done"); 
     } else {
       this.model.set("delivered", 0);
-      this.$el.css("text-decoration", "none"); 
+      this.$el.removeClass('done');
+
     }
     
   }
