@@ -45,14 +45,12 @@ var OrderView = Backbone.View.extend({
   },
 
   cancelOrder: function() {
-    console.warn("cancelled");
-    Backbone.Mediator.pub("cancelOrder");
+    Backbone.Mediator.pub("changeStateOfOrder", "cancelled");
     this.clearView();
   },
 
   closeOrder: function() {
-    console.log("closed!");
-    Backbone.Mediator.pub("closeOrder");
+    Backbone.Mediator.pub("changeStateOfOrder", "closed");
     this.clearView();
   }
 

@@ -20,7 +20,7 @@
   delItem: function() {
       var summary = 0;
       Waiter.Order.OrderCollection.url = "foods/" ;
-      
+
       this.model.destroy({success: function(model, response) {      
           console.log ("Success");
           },
@@ -32,7 +32,7 @@
       Waiter.Order.OrderView.renderAll();
       
       summary = this.model.get("summary");
-      Backbone.Mediator.pub("deleteItemSum", summary);
+      Backbone.Mediator.pub("changeTotalSum", {action: "sub", value:summary});
   },
   
   decreaseItem: function() {
@@ -43,10 +43,9 @@
         summary_item = this.model.get("summary") - this.model.get("cost");
         this.model.set({number: --id_number, summary: summary_item});
         
-        // Waiter.Order.OrderView.clearView();
-        // Waiter.Order.OrderView.renderAll();
         this.render(this.model.toJSON());
-        Backbone.Mediator.pub("decreaseItemSum", this.model.get("cost"));
+        Backbone.Mediator.pub("changeTotalSum", {action: "sub", 
+                                                 value: this.model.get("cost")});
       }
   },
   
@@ -58,12 +57,11 @@
 	this.model.set("summary", summary_item);
     
     console.log(summary_item);
-    // Waiter.Order.OrderView.clearView();
-    // Waiter.Order.OrderView.renderAll();
-        this.render(this.model.toJSON());
+    this.render(this.model.toJSON());
     
     
-	Backbone.Mediator.pub("increaseItemSum", this.model.get("cost"));
+	Backbone.Mediator.pub("changeTotalSum", {action: "add", 
+                                           value: this.model.get("cost")});
   },
   
   changeStatus: function() {
