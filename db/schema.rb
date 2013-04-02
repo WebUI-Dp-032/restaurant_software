@@ -32,4 +32,11 @@ ActiveRecord::Schema.define(:version => 20130330124328) do
     t.integer  "total"
   end
 
+  create_table "tables", :force => true do |t|
+    t.string   "name"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
 end

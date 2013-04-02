@@ -2,6 +2,7 @@ RestaurantSoftware::Application.routes.draw do
   get 'orders/get_order/:id' => 'orders#get_order'
   resources :orders
   resources :foods
+  resources :tables
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

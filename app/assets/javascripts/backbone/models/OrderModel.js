@@ -16,7 +16,7 @@ var OrderModel = Backbone.Model.extend({
 
   createOrder: function() {
     this.url = "/orders";
-    Backbone.Mediator.pub("tableIsBusy", this.table_id);
+    Backbone.Mediator.pub("tableIsBusy", this.get("table_id"));
     this.status = "opened";
     this.save();
   },

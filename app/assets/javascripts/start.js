@@ -1,11 +1,12 @@
-var Weiter = {
+var Waiter = {
   Tables: {},
   Menu: {},
   Order: {},
   User: {}
 };
 
-Weiter.Order.OrderCollection = new OrderCollection();
-Weiter.AppView = new AppView();
+Waiter.Order.OrderCollection = new OrderCollection();
+Waiter.Tables.TableCollection = new TableCollection();
+Waiter.AppView = new AppView();
 
-$(function(){ Weiter.AppView.render(); });
+$(function(){ Waiter.AppView.render(); });

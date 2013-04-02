@@ -11,6 +11,7 @@ var OrderCollection = Backbone.Collection.extend({
     Backbone.Mediator.sub("cancelOrder", this.cancelOrder, this);
     Backbone.Mediator.sub("closeOrder", this.closeOrder, this);
     Backbone.Mediator.sub("decreaseItemSum", this.decreaseSum, this);
+    Backbone.Mediator.sub("increaseItemSum", this.increaseSum, this);
 
     this.on("reset", this.addAllFood, this);
   },
@@ -78,7 +79,7 @@ var OrderCollection = Backbone.Collection.extend({
     console.warn("url-cancel, id", this.order.get("id"));
     this.order.save({status: "cancelled"});
     this.status = "free";
-    // Backbone.Mediator.pub("")
+    Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
     console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
   },
 
@@ -88,12 +89,18 @@ var OrderCollection = Backbone.Collection.extend({
     console.warn("url-closed, id", this.order.get("id"));
     this.order.save({status: "closed"});
     this.status = "free";
-    // Backbone.Mediator.pub("")
+    Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
     console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
   },
 
   decreaseSum: function(sum) {
     this.order.set({total:this.order.get("total") - sum});
+    Backbone.Mediator.pub("changeTotal");
+  },
+
+  increaseSum: function(sum) {
+    this.order.set({total:this.order.get("total") + sum});
+    Backbone.Mediator.pub("changeTotal");
   }
 
 });

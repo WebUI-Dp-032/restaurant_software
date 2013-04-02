@@ -18,7 +18,7 @@ var OrderView = Backbone.View.extend({
   },
 
   render: function() {
-    var total = Weiter.Order.OrderCollection.total;
+    var total = Waiter.Order.OrderCollection.total;
     this.$el.html(this.template({total: 0}));
     return this;
   },
@@ -29,14 +29,14 @@ var OrderView = Backbone.View.extend({
   },
 
   renderAll: function() {
-    var collection = Weiter.Order.OrderCollection;
+    var collection = Waiter.Order.OrderCollection;
     collection.forEach(function(item) {
-      Weiter.Order.OrderView.renderOne(item);
+      Waiter.Order.OrderView.renderOne(item);
     });
   },
 
   renderTotal: function() {
-    $("#total").html(Weiter.Order.OrderCollection.order.get("total"));
+    $("#total").html(Waiter.Order.OrderCollection.order.get("total"));
   },
 
   clearView: function() {
