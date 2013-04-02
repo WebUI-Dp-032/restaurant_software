@@ -32,15 +32,19 @@ var OrderCollection = Backbone.Collection.extend({
     var item, model;
     if (this.existFood(food.title)) {
       model = this.where({title: food.title})[0];
-      model.set({number: model.get('number') + 1 });
+      model.set({number: model.get('number') + 1,
+                 summary: model.get('summary') + model.get('cost') });
+
+
     } else {
       item = new OrderItemModel({title: food.title,
                                  cost: food.cost,
                                  summary: food.cost});
       this.add(item);
     }
+    Backbone.Mediator.pub('changeTotalSum', {action: 'add', value: food.cost});
 
-    this.order.changeTotal({action: "add", value: food.cost});
+
     if (this.status === "free") {
       this.makeBusy();
       this.status = "busy";

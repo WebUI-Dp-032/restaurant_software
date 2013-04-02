@@ -24,7 +24,7 @@
   delItem: function() {
       var summary = 0;
       Waiter.Order.OrderCollection.url = "foods/" ;
-
+      summary = this.model.get("summary");
       this.model.destroy({success: function(model, response) {      
           console.log ("Success");
           },
@@ -35,7 +35,7 @@
       Waiter.Order.OrderView.clearView();
       Waiter.Order.OrderView.renderAll();
       
-      summary = this.model.get("summary");
+      
       Backbone.Mediator.pub("changeTotalSum", {action: "sub", value:summary});
   },
   
