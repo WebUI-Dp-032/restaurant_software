@@ -54,6 +54,9 @@ var OrderCollection = Backbone.Collection.extend({
       if(this.status === "busy") {
         this.order.loadOrder(this.models[0].get("order_id"));
       }
+      Backbone.Mediator.pub('showManageBlock');
+    } else {
+      Backbone.Mediator.pub('hideManageBlock');
     }
   },
 
@@ -81,5 +84,6 @@ var OrderCollection = Backbone.Collection.extend({
     this.order.save({status: status});
     // Waiter.Order.OrderCollection.status = "free";
     Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
+    Backbone.Mediator.pub("hideManageBlock");
   }
 });

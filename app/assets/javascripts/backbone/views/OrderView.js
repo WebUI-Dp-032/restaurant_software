@@ -15,6 +15,8 @@ var OrderView = Backbone.View.extend({
     Backbone.Mediator.sub("addAllFood", this.renderAll, this);
     Backbone.Mediator.sub("clearOrderView", this.clearView, this);
     Backbone.Mediator.sub("changeTotal", this.renderTotal, this);
+    Backbone.Mediator.sub("showManageBlock", this.showManageBlock, this);
+    Backbone.Mediator.sub("hideManageBlock", this.hideManageBlock, this);
   },
 
   render: function() {
@@ -52,6 +54,14 @@ var OrderView = Backbone.View.extend({
   closeOrder: function() {
     Backbone.Mediator.pub("changeStateOfOrder", "closed");
     this.clearView();
+  },
+
+  showManageBlock: function() {
+    $("#manage-block").removeClass("hide");
+  },
+
+  hideManageBlock: function() {
+    $("#manage-block").addClass("hide");
   }
 
 });
