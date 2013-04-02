@@ -29,16 +29,25 @@ var OrderCollection = Backbone.Collection.extend({
   },
 
   addFood: function(food) {
-    var item = new OrderItemModel({title: food.title,
-                                   cost: food.cost,
-                                   summary: food.cost});
-    this.add(item);
+    var item, model;
+    if (this.existFood(food.title)) {
+      model = this.where({title: food.title})[0];
+      model.set({number: model.get('number') + 1 });
+    } else {
+      item = new OrderItemModel({title: food.title,
+                                 cost: food.cost,
+                                 summary: food.cost});
+      this.add(item);
+    }
+
     this.order.changeTotal({action: "add", value: food.cost});
     if (this.status === "free") {
       this.makeBusy();
       this.status = "busy";
     }
-    Backbone.Mediator.pub("addItemToOrder", item);
+    if (item) {
+      Backbone.Mediator.pub("addItemToOrder", item);
+    }
   },
 
   addAllFood: function() {
@@ -85,5 +94,9 @@ var OrderCollection = Backbone.Collection.extend({
     // Waiter.Order.OrderCollection.status = "free";
     Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
     Backbone.Mediator.pub("hideManageBlock");
+  },
+
+  existFood: function(food_title) {
+    return (this.where({title: food_title}).length>0) ? true : false;
   }
 });

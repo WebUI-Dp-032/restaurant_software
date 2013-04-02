@@ -12,6 +12,10 @@
     "click #increase" : "increaseItem"
   },
 
+  initialize: function() {
+    this.model.on('change', this.render, this);
+  },
+
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     return this;
@@ -43,7 +47,6 @@
         summary_item = this.model.get("summary") - this.model.get("cost");
         this.model.set({number: --id_number, summary: summary_item});
         
-        this.render(this.model.toJSON());
         Backbone.Mediator.pub("changeTotalSum", {action: "sub", 
                                                  value: this.model.get("cost")});
       }
@@ -57,7 +60,6 @@
 	this.model.set("summary", summary_item);
     
     console.log(summary_item);
-    this.render(this.model.toJSON());
     
     
 	Backbone.Mediator.pub("changeTotalSum", {action: "add", 
