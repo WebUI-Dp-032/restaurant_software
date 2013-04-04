@@ -11,7 +11,7 @@ var OrderModel = Backbone.Model.extend({
   url: "/orders",
 
   initialize: function() {
-    Backbone.Mediator.sub("deleteItemSum", this.subFromTotal, this);
+    Backbone.Mediator.sub("changeTotalSum", this.changeTotal, this);
   },
 
   createOrder: function() {
@@ -29,25 +29,29 @@ var OrderModel = Backbone.Model.extend({
     this.fetch();
   },
 
+  /**
+  * Saving order 
+  */
   saveOrder: function() {
-    console.warn("url-save, id", this.get("id"));
+    console.warn("saving order... id = ", this.get("id"));
     this.url = "/orders/" + this.get("id");
     this.save();
   },
 
-  addToTotal: function(sum) {
-    this.set({total: this.get("total") + sum });
-    Backbone.Mediator.pub("changeTotal");
-  },
-
-  subFromTotal: function(sum) {
-    this.set({total: this.get("total") - sum });
-    Backbone.Mediator.pub("changeTotal");
-  },
 
   clearTotalSum: function() {
     this.set({total: 0});
     Backbone.Mediator.pub("changeTotal");
+  },
+
+
+  changeTotal: function(options) {
+    switch (options.action) {
+      case 'add' : this.set({total: this.get("total") + options.value }); break;
+      case 'sub' : this.set({total: this.get("total") - options.value }); break;
+    }
+    Backbone.Mediator.pub("changeTotal");
+
   }
 
 

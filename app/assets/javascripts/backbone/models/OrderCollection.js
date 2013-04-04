@@ -8,10 +8,7 @@ var OrderCollection = Backbone.Collection.extend({
   initialize: function() {
     Backbone.Mediator.sub("selectTable", this.loadOrder, this);
     Backbone.Mediator.sub("addFoodInOrder", this.addFood, this);
-    Backbone.Mediator.sub("cancelOrder", this.cancelOrder, this);
-    Backbone.Mediator.sub("closeOrder", this.closeOrder, this);
-    Backbone.Mediator.sub("decreaseItemSum", this.decreaseSum, this);
-    Backbone.Mediator.sub("increaseItemSum", this.increaseSum, this);
+    Backbone.Mediator.sub("changeStateOfOrder", this.changeStatus, this);
 
     this.on("reset", this.addAllFood, this);
   },
@@ -32,16 +29,29 @@ var OrderCollection = Backbone.Collection.extend({
   },
 
   addFood: function(food) {
-    var item = new OrderItemModel({title: food.title,
-                                   cost: food.cost,
-                                   summary: food.cost});
-    this.add(item);
-    this.order.addToTotal(food.cost);
+    var item, model;
+    if (this.existFood(food.title)) {
+      model = this.where({title: food.title})[0];
+      model.set({number: model.get('number') + 1,
+                 summary: model.get('summary') + model.get('cost') });
+
+
+    } else {
+      item = new OrderItemModel({title: food.title,
+                                 cost: food.cost,
+                                 summary: food.cost});
+      this.add(item);
+    }
+    Backbone.Mediator.pub('changeTotalSum', {action: 'add', value: food.cost});
+
+
     if (this.status === "free") {
       this.makeBusy();
       this.status = "busy";
     }
-    Backbone.Mediator.pub("addItemToOrder", item);
+    if (item) {
+      Backbone.Mediator.pub("addItemToOrder", item);
+    }
   },
 
   addAllFood: function() {
@@ -57,50 +67,40 @@ var OrderCollection = Backbone.Collection.extend({
       if(this.status === "busy") {
         this.order.loadOrder(this.models[0].get("order_id"));
       }
+      Backbone.Mediator.pub('showManageBlock');
+    } else {
+      Backbone.Mediator.pub('hideManageBlock');
     }
   },
 
+  /**
+  * Saving food in order
+  */
   saveOrder: function() {
     var order_id = this.order.get("id");
     this.order.saveOrder();
     if (this.length > 0) {
       this.url = "/foods";
       this.forEach(function(food) {
-        console.log("save food this.order_id", order_id);
+        console.log("save food in order... id =", order_id);
         food.set({order_id: order_id});
         food.save();
       });
     }
   },
 
-  cancelOrder: function() {
-    this.saveOrder();
+
+  changeStatus: function(status) {
     this.order.url = "/orders/" + this.order.get("id");
-    console.warn("url-cancel, id", this.order.get("id"));
-    this.order.save({status: "cancelled"});
-    this.status = "free";
-    Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
-    console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
-  },
-
-  closeOrder: function() {
     this.saveOrder();
-    this.order.url = "/orders/" + this.order.get("id");
-    console.warn("url-closed, id", this.order.get("id"));
-    this.order.save({status: "closed"});
-    this.status = "free";
+    console.warn(status, " order... id =", this.order.get("id"));
+    this.order.save({status: status});
+    // Waiter.Order.OrderCollection.status = "free";
     Backbone.Mediator.pub("tableIsFree", this.order.get("table_id"));
-    console.log("Mediator.pub('tableIsFree')", this.order.get("table_id"));
+    Backbone.Mediator.pub("hideManageBlock");
   },
 
-  decreaseSum: function(sum) {
-    this.order.set({total:this.order.get("total") - sum});
-    Backbone.Mediator.pub("changeTotal");
-  },
-
-  increaseSum: function(sum) {
-    this.order.set({total:this.order.get("total") + sum});
-    Backbone.Mediator.pub("changeTotal");
+  existFood: function(food_title) {
+    return (this.where({title: food_title}).length>0) ? true : false;
   }
-
 });
