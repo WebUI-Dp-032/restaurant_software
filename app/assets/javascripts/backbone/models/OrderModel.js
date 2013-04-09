@@ -21,7 +21,8 @@ var OrderModel = Backbone.Model.extend({
 
   loadOrderCallback: function(order, response) {
     Waiter.Order.TotalView.model.url = '/orders/' + order.get('id');
-    Waiter.Order.FoodsView.collection.loadFoods(order.get('id'));
+    // Waiter.Order.FoodsView.collection.loadFoods(order.get('id'));
+    Backbone.Mediator.pub('foods_view_load_foods', order.get('id'));
   },
 
   prepareOrder: function(table_id) {

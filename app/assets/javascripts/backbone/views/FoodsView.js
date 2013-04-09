@@ -13,6 +13,7 @@ var FoodsView = Backbone.View.extend({
     Backbone.Mediator.sub('foods_view_save_food', this.saveFood, this);
 
     Backbone.Mediator.sub('foods_view_clear_view', this.clearView, this);
+    Backbone.Mediator.sub('foods_view_load_foods', this.loadFoods, this);
   },
 
   render: function() {
@@ -33,6 +34,7 @@ var FoodsView = Backbone.View.extend({
 
   clearView: function() {
     $("#order-items").html("");
+    this.collection.clear();
   },
 
   savePrepared: function() {
@@ -42,6 +44,10 @@ var FoodsView = Backbone.View.extend({
 
   saveFood: function(food) {
     this.collection.addFood(food);
+  },
+
+  loadFoods: function(order_id) {
+    this.collection.loadFoods(order_id);
   }
 
 

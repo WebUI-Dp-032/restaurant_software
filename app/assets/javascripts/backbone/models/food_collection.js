@@ -7,7 +7,6 @@ var FoodsCollection = Backbone.Collection.extend({
   loadFoods: function(order_id) {
     this.order_id = order_id;
     this.url = '/foods/get_foods_by_order/' + order_id + '.json';
-    this.reset();
     this.fetch();
     this.url = '/foods';
   },
@@ -29,6 +28,10 @@ var FoodsCollection = Backbone.Collection.extend({
 
   existFood: function(food_title) {
     return (this.where({title: food_title}).length > 0) ? true : false;
+  },
+
+  clear: function() {
+    this.reset();
   }
 
 });
