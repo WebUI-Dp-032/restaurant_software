@@ -17,7 +17,20 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @food }
+
+      format.json do 
+        foods = Food.where({order_id: params[:id]})
+        render json: foods
+      end
+    end
+  end
+
+  def get_foods_by_order
+    @foods = Food.where({order_id: params[:order_id]})
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @foods }
     end
   end
 

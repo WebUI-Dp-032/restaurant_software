@@ -5,6 +5,23 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script>
+
+  
+
+<% @groups = Group.all %>
+<% @categories = Category.all %>
+<% @items = Item.all %>
+<% @groupsJSON = @groups.to_json(:only => [:name])  %>
+<% @categoriesJSON = @categories.to_json(:only => [:name, :attachment ])  %>
+<% @itemsJSON = @items.to_json(:only => [:name, :attachment, :price, :description])  %>
+
+
+window.Waiter.Menu.Groups = <%= @groupsJSON.html_safe %>;
+window.Waiter.Menu.Categories = <%= @categoriesJSON.html_safe %>;
+window.Waiter.Menu.Items = <%= @itemsJSON.html_safe %>;
+
+  </script>
 </head>
 <body>
 
@@ -12,3 +29,4 @@
 
 </body>
 </html>
+

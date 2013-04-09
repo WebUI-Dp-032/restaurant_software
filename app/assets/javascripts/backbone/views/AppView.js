@@ -1,34 +1,19 @@
 var AppView = Backbone.View.extend({
-  el: $("html"),
+  el: $("#container"),
+
   template: JST['backbone/templates/PageTemplate'],
- 
-  initialize: function() {
-    $("#container").html(this.template());
-   
+
+  render: function() {
     Waiter.Tables.TablesView = new TablesView(),
     Waiter.Menu.MenuView = new MenuView(),
-    Waiter.Order.OrderView = new OrderView();
-    
+    Waiter.Order.FoodsView = new FoodsView();
+    Waiter.Order.TotalView = new TotalView();
+    $("#container").html(this.template());
     $("#tables-container").append(Waiter.Tables.TablesView.render().el);
     $("#menu-container").append(Waiter.Menu.MenuView.render().el);
-    $("#order-container").append(Waiter.Order.OrderView.render().el);
-    
-
-  },
-  events: {
-    "click #map": "showMap",
-    "click .shadow": "hideMap"
-  },
-
-  showMap: function() {
-      var mapView = new MapView();  
-      $("body").append($("<div></div>").addClass("shadow"));
-      $("body").append(mapView.render().el);
-  },
-  
-  hideMap: function() {
-      $(".shadow").remove();
-      $(".map-view").remove();
+    $("#order-container").append(Waiter.Order.FoodsView.render().el);
+    Waiter.Menu.MenuView.addAll();
+    $("#order-module").append(Waiter.Order.TotalView.render().el);
   }
 
 });

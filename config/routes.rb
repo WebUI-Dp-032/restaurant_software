@@ -1,5 +1,9 @@
 RestaurantSoftware::Application.routes.draw do
-  get 'orders/get_order/:id' => 'orders#get_order'
+  get 'orders/get_order_by_table/:table_id' => 'orders#get_order_by_table'
+  get 'foods/get_foods_by_order/:order_id' => 'foods#get_foods_by_order'
+  resources :items
+  resources :categories
+  resources :groups
   resources :orders
   resources :foods
   resources :tables

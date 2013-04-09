@@ -2,14 +2,14 @@ var Waiter = {
   Tables: {},
   Menu: {},
   Order: {},
-  User: {}
+  User: {},
+  Main: {}
 };
 
+Waiter.Tables.TableCollection = new TableCollection();
+Waiter.Menu.GroupCollection = new GroupCollection();
+Waiter.Menu.CategoryCollection = new CategoryCollection();
+Waiter.Menu.ItemCollection = new ItemCollection();
+Waiter.AppView = new AppView();
 
-
-$(function(){ 
-	Waiter.Order.OrderCollection = new OrderCollection();
-	Waiter.Tables.TableCollection = new TableCollection();
-	Waiter.AppView = new AppView();
-	
-});
+$(function(){ Waiter.AppView.render(); });

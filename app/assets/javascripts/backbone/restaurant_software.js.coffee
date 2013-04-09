@@ -1,21 +1,27 @@
 #= require_self
 #= require_tree ./templates
-#= require ./views/AppView
 #= require ./models/OrderModel
-#= require ./models/OrderItemModel
-#= require ./models/OrderCollection
+#= require ./models/FoodModel
+#= require ./models/food_collection
 #= require ./models/TableItemModel
 #= require ./models/TableCollection
-#= require ./models/Desk
-#= require ./models/DeskCollection
+#= require ./models/group_model
+#= require ./models/category_model
+#= require ./models/item_model
+#= require ./models/group_collection
+#= require ./models/category_collection
+#= require ./models/item_collection
+#= require ./views/group_view
+#= require ./views/category_view
+#= require ./views/item_view
+#= require ./views/popup_view
+#= require ./views/menu_view
 #= require ./views/TableItemView
 #= require ./views/TablesView
-#= require ./views/MapView
-#= require ./views/DeskView
-#= require ./views/MenuView
 #= require ./views/OrderItemView
-#= require ./views/OrderView
-
+#= require ./views/FoodsView
+#= require ./views/TotalView
+#= require ./views/AppView
 #= require_tree ./routers
 
 window.RestaurantSoftware =
