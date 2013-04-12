@@ -11,7 +11,6 @@
 #= require ./views/popup_view
 #= require ./views/menu_view
 #= require ./views/table_item_view
-#= require ./views/table_view
 #= require ./views/tables_view
 #= require ./views/order_item_view
 #= require ./views/foods_view

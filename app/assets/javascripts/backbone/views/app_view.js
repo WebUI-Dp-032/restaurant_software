@@ -15,7 +15,7 @@
     template: JST['backbone/templates/page_template'],
 
     initialize: function() {
-      Waiter.Tables.TableCollection = new TableCollection();
+      
       Waiter.Menu.GroupCollection = new GroupCollection();
       Waiter.Menu.CategoryCollection = new CategoryCollection();
       Waiter.Menu.ItemCollection = new ItemCollection();

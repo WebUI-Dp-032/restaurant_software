@@ -12,7 +12,7 @@
 
     busyTable: function(table_id) {
       console.log("busy", "table", table_id);
-      Waiter.Tables.TableCollection.forEach(function(item) {
+      this.forEach(function(item) {
         if (item.get("id") == table_id) {
         item.save({status: "busy"});
         }
@@ -22,7 +22,7 @@
     freeTable : function(table_id) {
       console.log("free", "table", table_id);
 
-       Waiter.Tables.TableCollection.forEach(function(item) {
+       this.forEach(function(item) {
        if (item.get("id") == table_id) {
        item.save({status: "free"});
        }

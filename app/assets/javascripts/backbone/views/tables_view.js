@@ -1,4 +1,4 @@
-(function (TableItemView, MapView) {
+(function (TableCollection, TableItemView, MapView) {
   window.RS.Views.TablesView = Backbone.View.extend({
 
     tagName: "div",
@@ -12,8 +12,9 @@
     },
 
     initialize: function() {
-      Waiter.Tables.TableCollection.bind('reset', this.renderAll, this);
-      Waiter.Tables.TableCollection.fetch();
+      this.collection = new TableCollection();
+      this.collection.bind('reset', this.renderAll, this);
+      this.collection.fetch();
     },
 
     renderOne: function(table) {
@@ -23,8 +24,11 @@
 
 
     renderAll: function() {
-      Waiter.Tables.TableCollection.each(this.renderOne);
+      this.collection.each(this.renderOne);
     }
 
   });
-})(window.RS.Views.TableItemView, window.RS.Views.MapView);
+})(
+window.RS.Collections.TableCollection,
+window.RS.Views.TableItemView,
+window.RS.Views.MapView);
