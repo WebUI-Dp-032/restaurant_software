@@ -1,5 +1,3 @@
-
-var GroupModel = Backbone.Model.extend();
-  
-  
-  
+(function () {
+  window.RS.Models.GroupModel = Backbone.Model.extend();
+})();

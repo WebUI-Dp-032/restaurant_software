@@ -1,31 +1,30 @@
 #= require_self
 #= require_tree ./templates
-#= require ./models/OrderModel
-#= require ./models/FoodModel
-#= require ./models/food_collection
-#= require ./models/TableItemModel
-#= require ./models/TableCollection
-#= require ./models/group_model
-#= require ./models/category_model
-#= require ./models/item_model
-#= require ./models/group_collection
-#= require ./models/category_collection
-#= require ./models/item_collection
-#= require ./views/group_view
-#= require ./views/category_view
+#= require_tree ./models
+#= require_tree ./collections
 #= require ./views/item_view
+#= require ./views/desk_view
+#= require ./views/map_view
+#= require ./views/main_map_view
+#= require ./views/category_view
+#= require ./views/group_view
 #= require ./views/popup_view
 #= require ./views/menu_view
-#= require ./views/TableItemView
-#= require ./views/TablesView
-#= require ./views/OrderItemView
-#= require ./views/FoodsView
-#= require ./views/TotalView
-#= require ./views/AppView
+#= require ./views/table_item_view
+#= require ./views/table_view
+#= require ./views/tables_view
+#= require ./views/order_item_view
+#= require ./views/foods_view
+#= require ./views/total_view
+#= require ./views/app_view
+
 #= require_tree ./routers
 
-window.RestaurantSoftware =
+window.RS =
   Models: {}
   Collections: {}
   Routers: {}
   Views: {}
+  start: () -> 
+    view = new window.RS.Views.AppView()
+    view.render()

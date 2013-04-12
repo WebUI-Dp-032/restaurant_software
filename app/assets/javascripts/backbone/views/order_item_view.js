@@ -1,9 +1,10 @@
-﻿var OrderItemView = Backbone.View.extend({
+﻿(function () {
+  window.RS.Views.OrderItemView = Backbone.View.extend({
 
   tagName: "tr",
   className: "order-item",
 
-  template: JST['backbone/templates/OrderItemTemplate'],
+  template: JST['backbone/templates/order_item_template'],
 
   events: {
     "click #minus_rows" : "delItem",
@@ -24,8 +25,7 @@
   delItem: function() {
       var summary = this.model.get("summary");
       this.model.destroy();
-      Waiter.Order.FoodsView.clearView();
-      Waiter.Order.FoodsView.renderAll();
+      this.remove();
       Backbone.Mediator.pub("order_model_change_total", {action: "sub", value:summary});
   },
 
@@ -42,3 +42,4 @@
   }
 
 });
+})();

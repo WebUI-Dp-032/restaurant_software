@@ -1,2 +1,3 @@
-
-var CategoryModel = Backbone.Model.extend();
+(function () {
+  window.RS.Models.CategoryModel = Backbone.Model.extend();
+})();

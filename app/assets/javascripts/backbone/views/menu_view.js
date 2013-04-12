@@ -1,9 +1,9 @@
-
-var MenuView = Backbone.View.extend({
+(function (GroupView, GroupCollection) {
+  window.RS.Views.MenuView = Backbone.View.extend({
 
     tagName: "div",
     className: "wrap",
-    template: JST['backbone/templates/MenuTemplate'],
+    template: JST['backbone/templates/menu_template'],
 
     initialize: function() {
         this.groups = new GroupCollection();
@@ -16,8 +16,8 @@ var MenuView = Backbone.View.extend({
     },
 
     addOne: function(group) {
-      var view = new GroupView({model: group, id: group.get("name")});  
-      $("ul#menu").append(view.render().el);    
+      var view = new GroupView({model: group, id: group.get("name")});
+      $("ul#menu").append(view.render().el);
     },
 
     addAll: function() {
@@ -25,14 +25,8 @@ var MenuView = Backbone.View.extend({
      return this;
     }
 
-});
-
-
-
-
-
-
-
-  
-  
-  
+  });
+})(
+window.RS.Views.GroupView,
+window.RS.Collections.GroupCollection
+);

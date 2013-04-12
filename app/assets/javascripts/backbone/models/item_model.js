@@ -1,4 +1,3 @@
-
-var ItemModel = Backbone.Model.extend();
-  
-  
+(function () {
+  window.RS.Models.ItemModel = Backbone.Model.extend();
+})();

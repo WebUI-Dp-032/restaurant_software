@@ -4,4 +4,9 @@ class MainController < ApplicationController
     
   end
 
+  def admin
+    
+  end
+
+
 end
