@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def get_order
-    @order = Order.find(params[:id]);
+  def get_order_by_table
+    @order = Order.where({table_id: params[:table_id], status: 'opened'}).first();
     
     respond_to do |format|
       format.html # show.html.erb
@@ -23,11 +23,18 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.where({table_id: params[:id], status: "opened"}).first()
-    foods = @order ? @order.foods : []
+    # @order = Order.where({table_id: params[:id], status: "opened"}).first()
+    # foods = @order ? @order.foods : []
+    @order = Order.where({table_id: params[:id], status: 'opened'})
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: foods }
+      
+      # format.json { render json: foods }
+      format.json do
+
+        render json: @order 
+      end
+
     end
   end
 
