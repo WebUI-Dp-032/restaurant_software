@@ -1,4 +1,5 @@
 (function (TableCollection, TableItemView, MapView) {
+
   window.RS.Views.TablesView = Backbone.View.extend({
 
     tagName: "div",
@@ -32,3 +33,4 @@
 window.RS.Collections.TableCollection,
 window.RS.Views.TableItemView,
 window.RS.Views.MapView);
+
