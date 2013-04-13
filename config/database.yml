@@ -12,3 +12,4 @@ test:
 production:
   <<: *defaults
   database: restaurant_software
+
