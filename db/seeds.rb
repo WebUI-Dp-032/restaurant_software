@@ -58,7 +58,7 @@
         ])
 
     User.delete_all
-    User.create(email: 'waiter@rsoft.com', password: 'waiter', password_confirmation: 'waiter')
+    User.create(email: 'waiter@rsoft.com', username:'waiter1' password: 'waiter', password_confirmation: 'waiter')
 
     Admin.delete_all
-    Admin.create(email: 'admin@rsoft.com', password: 'waiter', password_confirmation: 'waiter')
+    Admin.create(email: 'admin@rsoft.com', username:'admin1' password: 'admin', password_confirmation: 'admin')

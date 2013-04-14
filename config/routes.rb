@@ -1,6 +1,5 @@
 RestaurantSoftware::Application.routes.draw do
   devise_for :admins
-
   devise_for :users
 
   get 'orders/get_order_by_table/:table_id' => 'orders#get_order_by_table'
@@ -12,9 +11,9 @@ RestaurantSoftware::Application.routes.draw do
   resources :foods
   resources :tables
 
- # authenticated :admin do
-  #  root :to => 'main#admin'
-  #end
+  authenticated :admin do
+   root :to => 'main#admin'
+  end
 
   root :to => 'main#index'
 
