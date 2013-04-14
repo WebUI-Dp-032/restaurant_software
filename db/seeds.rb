@@ -56,3 +56,9 @@
             {name: "yellow", attachment: "jelly", description: "yellow jelly description", price: "10"},
             {name: "red", attachment: "jelly", description: "red jelly description", price: "10"}
         ])
+
+    User.delete_all
+    User.create(email: 'waiter@rsoft.com', password: 'waiter', password_confirmation: 'waiter')
+
+    Admin.delete_all
+    Admin.create(email: 'admin@rsoft.com', password: 'waiter', password_confirmation: 'waiter')
