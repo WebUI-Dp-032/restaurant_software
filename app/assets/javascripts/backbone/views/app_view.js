@@ -28,7 +28,7 @@
     },
 
     render: function() {
-      $("#container").html(this.template());
+      $("#container").html(this.template({username: window.RS.username}));
       $("#tables-container").append(Waiter.Tables.TablesView.render().el);
       $("#menu-container").append(this.menu_view.render().el);
       $("#order-container").append(this.foods_view.render().el);

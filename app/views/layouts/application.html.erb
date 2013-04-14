@@ -21,16 +21,16 @@ window.Waiter.Menu.Groups = <%= @groupsJSON.html_safe %>;
 window.Waiter.Menu.Categories = <%= @categoriesJSON.html_safe %>;
 window.Waiter.Menu.Items = <%= @itemsJSON.html_safe %>;
 
+<% if user_signed_in? %>
+  window.RS.username = '<%= current_user.username %>'
+<% else %>
+     
+<% end %>
+
+
   </script>
 </head>
 <body>
-<%if user_signed_in? %>
-    Welcome <%= current_user.username%>
-    <%= link_to 'Sign out', destroy_user_session_path %>
-<% else %>
-    
-    <%= link_to "Sign in", new_user_session_path %> 
-<% end %>
 <%= yield %>
 
 </body>

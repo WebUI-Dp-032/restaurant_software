@@ -1,7 +1,7 @@
 RestaurantSoftware::Application.routes.draw do
-  devise_for :admins
-  devise_for :users
-
+  devise_for :admins, :path_names => {sign_in: 'login', sign_out: 'logout'}
+  devise_for :users, :path_names => {sign_in: 'login', sign_out: 'logout'}
+  get 'admin' => 'admin#index'
   get 'orders/get_order_by_table/:table_id' => 'orders#get_order_by_table'
   get 'foods/get_foods_by_order/:order_id' => 'foods#get_foods_by_order'
   resources :items
@@ -11,11 +11,11 @@ RestaurantSoftware::Application.routes.draw do
   resources :foods
   resources :tables
 
-  authenticated :admin do
-   root :to => 'main#admin'
-  end
+  # authenticated :admin do
+  #  root :to => 'main#admin'
+  # end
 
-  root :to => 'main#index'
+  root :to => 'user#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
