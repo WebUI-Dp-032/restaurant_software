@@ -2,7 +2,11 @@
 #= require_tree ./admin/templates
 #= require_tree ./admin/models
 #= require_tree ./admin/collections
-#= require_tree ./admin/views
+#= require ./admin/views/personal_view
+#= require ./admin/views/hall_view
+#= require ./admin/views/menu_view
+#= require ./admin/views/tab_view
+#= require ./admin/views/app_view
 
 window.RS =
   Models: {}

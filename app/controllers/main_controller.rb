@@ -1,11 +1,11 @@
 class MainController < ApplicationController
 
   def index
-    @js =  'application'
+    @role =  'main'
   end
 
   def admin
-    @js = 'admin'
+    @role = 'admin'
   end
 
 
