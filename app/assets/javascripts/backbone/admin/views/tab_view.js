@@ -3,8 +3,6 @@
            MenuView){
 
   window.RS.Views.TabView = Backbone.View.extend({
-    // className: 'tab-content',
-    // id: 'vertical-menu',
 
     className: 'row',
     template: JST['backbone/admin/templates/tab_template'],

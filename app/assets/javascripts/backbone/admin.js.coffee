@@ -2,6 +2,8 @@
 #= require_tree ./admin/templates
 #= require_tree ./admin/models
 #= require_tree ./admin/collections
+#= require ./admin/views/waiter_view
+#= require ./admin/views/waiters_view
 #= require ./admin/views/personal_view
 #= require ./admin/views/hall_view
 #= require ./admin/views/menu_view
