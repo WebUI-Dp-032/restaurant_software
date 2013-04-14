@@ -24,6 +24,7 @@
         {name: "desserts"},
         {name: "karaoke"}
 	])
+
     Category.delete_all
     Category.create([
             {name: "hot-meals", attachment: "foods"},

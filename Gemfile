@@ -9,6 +9,8 @@ gem 'therubyracer'
 
 gem "rails-backbone"
 gem "ejs"
+gem 'devise'
+gem 'cancan'
 
 group :assets do
   gem 'less-rails'

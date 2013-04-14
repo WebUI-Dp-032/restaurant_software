@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>RestaurantSoftware</title>
   <%= stylesheet_link_tag    @role, :media => "all" %>
   <%= javascript_include_tag @role %>
@@ -23,7 +24,13 @@ window.Waiter.Menu.Items = <%= @itemsJSON.html_safe %>;
   </script>
 </head>
 <body>
-
+<%if user_signed_in? %>
+    Welcome <%= current_user.username%>
+    <%= link_to 'Sign out', destroy_user_session_path %>
+<% else %>
+    
+    <%= link_to "Sign in", new_user_session_path %> 
+<% end %>
 <%= yield %>
 
 </body>
