@@ -13,19 +13,15 @@
   <script>
 	
 
-<% @groups = Group.all %>
-<% @categories = Category.all %>
-<% @items = Item.all %>
-<% @groupsJSON = @groups.to_json(:only => [:name])  %>
-<% @categoriesJSON = @categories.to_json(:only => [:name, :attachment ])  %>
-<% @itemsJSON = @items.to_json(:only => [:name, :attachment, :price, :description])  %>
 
-
-window.Waiter.Menu.Groups = <%= @groupsJSON.html_safe %>;
-window.Waiter.Menu.Categories = <%= @categoriesJSON.html_safe %>;
-window.Waiter.Menu.Items = <%= @itemsJSON.html_safe %>;
 
 <% if user_signed_in? %>
+
+  // need to preload MenuModule data
+  window.RS.Data.Groups = <%== @groups.to_json %>;
+  window.RS.Data.Categories = <%== @categories.to_json %>;
+  window.RS.Data.Items = <%== @items.to_json %>;
+
   window.RS.username = '<%= current_user.username %>'
 <% else %>
      
