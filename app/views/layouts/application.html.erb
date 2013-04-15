@@ -3,11 +3,15 @@
 <head>
 
   <title>RestaurantSoftware</title>
+ 
+  <%= stylesheet_link_tag  "main", :media => "all" %>
+  <%= stylesheet_link_tag  "login", :media => "all" %>
   <%= stylesheet_link_tag    @role, :media => "all" %>
   <%= javascript_include_tag @role %>
   <%= csrf_meta_tags %>
+  
   <script>
-
+	
 
 <% @groups = Group.all %>
 <% @categories = Category.all %>
