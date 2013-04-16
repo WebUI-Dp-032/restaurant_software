@@ -1,6 +1,5 @@
 #= require_self
 #= require_tree ./admin/templates
-#= require_tree ./admin/views
 #= require ./admin/views/waiter_view
 #= require ./admin/views/waiters_view
 #= require ./admin/views/personal_view
@@ -13,6 +12,7 @@ window.RS =
   Models: {}
   Collections: {}
   Views: {}
+  Data: {}
   start: () -> 
     view = new window.RS.Views.AppView()
     view.render()
