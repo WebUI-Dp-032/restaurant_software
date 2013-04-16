@@ -6,6 +6,7 @@
     template: JST['backbone/admin/templates/page_template'],
 
     initialize: function() {
+      console.log(TabView)
       this.tab_view = new TabView();
     },
 
