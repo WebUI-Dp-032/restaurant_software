@@ -24,6 +24,7 @@ window.RS =
   Collections: {}
   Routers: {}
   Views: {}
+  Data: {}
   start: () -> 
     view = new window.RS.Views.AppView()
     view.render()
