@@ -15,7 +15,7 @@
     initialize: function() {
 
 
-      Waiter.Tables.TablesView = new TablesView();
+      this.tables_view = new TablesView();
       this.menu_view = new MenuView();
       this.foods_view = new FoodsView();
       this.total_view = new TotalView();
@@ -25,7 +25,7 @@
 
     render: function() {
       $("#container").html(this.template({username: window.RS.username}));
-      $("#tables-container").append(Waiter.Tables.TablesView.render().el);
+      $("#tables-container").append(this.tables_view.render().el);
       $("#menu-container").append(this.menu_view.render().el);
       // this.menu_view.addAll();
       $("#order-container").append(this.foods_view.render().el);

@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
     @orders = Order.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      # format.html # index.html.erb
+      format.html {render 'error'}
       format.json { render json: @orders }
     end
   end
@@ -23,18 +24,10 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    # @order = Order.where({table_id: params[:id], status: "opened"}).first()
-    # foods = @order ? @order.foods : []
     @order = Order.where({table_id: params[:id], status: 'opened'})
     respond_to do |format|
       format.html # show.html.erb
-      
-      # format.json { render json: foods }
-      format.json do
-
-        render json: @order 
-      end
-
+      format.json { render json: @order }
     end
   end
 

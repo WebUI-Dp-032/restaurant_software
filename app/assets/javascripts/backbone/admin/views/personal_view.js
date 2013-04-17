@@ -1,6 +1,6 @@
-(function (WaitersView){
+(function (AdminWaitersView){
 
-  window.RS.Views.PersonalView = Backbone.View.extend({
+  window.RS.Views.AdminPersonalView = Backbone.View.extend({
     className: 'tab-pane active',
     id: 'personal',
 
@@ -12,7 +12,7 @@
     },
 
     initialize: function() {
-      this.waiters_view = new WaitersView();
+      this.waiters_view = new AdminWaitersView();
     },
 
     render: function() {
@@ -34,4 +34,4 @@
 
   });
 
-})(window.RS.Views.WaitersView);
+})(window.RS.Views.AdminWaitersView);

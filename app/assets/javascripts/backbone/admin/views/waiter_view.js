@@ -1,6 +1,6 @@
 (function (){
 
-  window.RS.Views.WaiterView = Backbone.View.extend({
+  window.RS.Views.AdminWaiterView = Backbone.View.extend({
     className: 'accordion-group',
 
     template: JST['backbone/admin/templates/waiter_template'],

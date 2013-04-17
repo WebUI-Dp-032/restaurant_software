@@ -1,6 +1,6 @@
-(function (WaiterView){
+(function (AdminWaiterView){
 
-  window.RS.Views.WaitersView = Backbone.View.extend({
+  window.RS.Views.AdminWaitersView = Backbone.View.extend({
     el: $('#waiter-list'),
 
     template: '',
@@ -14,10 +14,10 @@
     },
 
     renderOne: function(model) {
-      var view = new WaiterView({model: model});
+      var view = new AdminWaiterView({model: model});
       $('#waiter-list').append(view.render().el);
     }
 
   });
 
-})(window.RS.Views.WaiterView);
+})(window.RS.Views.AdminWaiterView);

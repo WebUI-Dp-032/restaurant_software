@@ -4,35 +4,30 @@
 
   <title>RestaurantSoftware</title>
  
-  <%= stylesheet_link_tag  "main", :media => "all" %>
-  <%= stylesheet_link_tag  "login", :media => "all" %>
-  <%= stylesheet_link_tag    @role, :media => "all" %>
-  <%= javascript_include_tag @role %>
+  <%= stylesheet_link_tag "main", :media => "all" %>
+  <%= stylesheet_link_tag "login", :media => "all" %>
+  <%= stylesheet_link_tag "admin", :media => "all" %>
+  <%= javascript_include_tag "main" %>
   <%= csrf_meta_tags %>
   
   <script>
-	
+    <% if user_signed_in? %>
+      // need to preload MenuModule data
+      window.RS.Data.Groups = <%== @groups.to_json %>;
+      window.RS.Data.Categories = <%== @categories.to_json %>;
+      window.RS.Data.Items = <%== @items.to_json %>;
+      window.RS.user = <%== current_user.to_json %>;
 
-
-
-<% if user_signed_in? %>
-
-  // need to preload MenuModule data
-  window.RS.Data.Groups = <%== @groups.to_json %>;
-  window.RS.Data.Categories = <%== @categories.to_json %>;
-  window.RS.Data.Items = <%== @items.to_json %>;
-
-  window.RS.username = '<%= current_user.username %>'
-<% else %>
-     
-<% end %>
-
-
+      window.RS.username = '<%= current_user.username %>'
+    <% else %>
+         
+    <% end %>
   </script>
 </head>
+
 <body>
 <%= yield %>
-
 </body>
+
 </html>
 
