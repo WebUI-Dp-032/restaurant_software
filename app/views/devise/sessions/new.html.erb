@@ -7,10 +7,10 @@
 			<tbody>
 				<tr>
 					<td>
-						<%= f.label :email %>
+						<%= f.label :username %>
 					</td>
 					<td>
-						<%= f.email_field :email, :autofocus => true %>
+						<%= f.text_field :username, :autofocus => true, :class => 'input-login' %>
 					</td>
 				</tr>
 				<tr>
@@ -21,17 +21,10 @@
 							<%= f.password_field :password %>
 					</td>
 				</tr>
-				<tr>
-					<% if devise_mapping.rememberable? -%>
-					<td colspan="2">
-							<%= f.check_box :remember_me %>
-							<%= f.label :remember_me %>
-					</td>
-					<% end -%>
-				</tr>
+		
 				<tr>
 					<td colspan="2">
-							<%= f.submit "Sign in", :class => "btn btn-success" %>
+							<%= f.submit "Sign in", :class => "btn btn-success btn-login" %>
 					</td>
 				</tr>
 			</tbody>

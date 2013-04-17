@@ -34,3 +34,11 @@ label[for^="user"] {
 #login-box table tbody tr td[colspan="2"] {
 	text-align: right;
 }
+
+.input-login {
+	width: 150px;
+}
+
+.btn-login {
+    margin-right: 35%;
+}
