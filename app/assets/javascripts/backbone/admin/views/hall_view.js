@@ -1,6 +1,6 @@
 (function (){
 
-  window.RS.Views.HallView = Backbone.View.extend({
+  window.RS.Views.AdminHallView = Backbone.View.extend({
     className: 'tab-pane active',
     id: 'hall',
 

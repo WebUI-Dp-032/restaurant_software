@@ -1,6 +1,7 @@
-(function (WaiterView){
+(function (AdminWaiterView){
 
-  window.RS.Views.WaitersView = Backbone.View.extend({
+  window.RS.Views.AdminWaitersView = Backbone.View.extend({
+    el: $('#waiter-list'),
 
     initialize: function() {
       this.collection = new WaitersCollection(); 
@@ -15,7 +16,7 @@
     },
 
     createWaiter: function(model_this) {
-      var view = new WaiterView({model: model_this});
+      var view = new AdminWaiterView({model: model_this});
       model_this.save();
      $("#waiter-list").append(view.render().el);
     },
@@ -38,11 +39,11 @@
     },
 
     changeWaiter: function(model_this) {
-      var view = new WaiterView();
+      var view = new AdminWaiterView();
       view.renderChange(model_this);
       model_this.save();
     }
 
   });
 
-})(window.RS.Views.WaiterView);
+})(window.RS.Views.AdminWaiterView);

@@ -1,4 +1,6 @@
-(function (ItemView, ItemCollection) {
+(function (ItemView, 
+           ItemCollection
+           ) {
   window.RS.Views.CategoryView = Backbone.View.extend({
 
     tagName: "li",
@@ -9,8 +11,8 @@
     },
 
     initialize: function() {
-      this.items = new ItemCollection();
-      this.items.reset(window.Waiter.Menu.Items);
+      this.items_collection = new ItemCollection();
+      this.items_collection.fetch();
     },
 
     render: function () {
@@ -27,7 +29,7 @@
     getItems: function() {
       event.stopPropagation();
       $(".menu-categories ul").children().remove();
-      var sortedItems = this.items.where({attachment: this.id});
+      var sortedItems = this.items_collection.where({attachment: this.id});
       _.each(sortedItems, this.addOne, this);
     }
 

@@ -1,6 +1,7 @@
 (function (GroupModel) {
   window.RS.Collections.GroupCollection = Backbone.Collection.extend({
-    model: GroupModel
+    model: GroupModel,
+    url: "/groups"
   });
 })(
 window.RS.Models.GroupModel

@@ -17,6 +17,17 @@
 #= require ./views/total_view
 #= require ./views/app_view
 
+#= require_tree ./admin/templates
+#= require_tree ./admin/models
+#= require_tree ./admin/collections
+#= require ./admin/views/waiter_view
+#= require ./admin/views/waiters_view
+#= require ./admin/views/personal_view
+#= require ./admin/views/hall_view
+#= require ./admin/views/menu_view
+#= require ./admin/views/tab_view
+#= require ./admin/views/app_view
+
 #= require_tree ./routers
 
 window.RS =
@@ -24,6 +35,10 @@ window.RS =
   Collections: {}
   Routers: {}
   Views: {}
-  start: () -> 
-    view = new window.RS.Views.AppView()
-    view.render()
+  Data: {}
+
+  start: () ->
+    user = window.RS.user
+    role = (if (user.admin) then "admin" else "waiter")
+    window.RS.Router.route(role, role)
+    window.RS.Router.navigate(role, {trigger: true})

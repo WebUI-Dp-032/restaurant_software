@@ -1,8 +1,8 @@
-(function (PersonalView,
-           HallView,
-           MenuView){
+(function (AdminPersonalView,
+           AdminHallView,
+           AdminMenuView){
 
-  window.RS.Views.TabView = Backbone.View.extend({
+  window.RS.Views.AdminTabView = Backbone.View.extend({
 
     className: 'row',
     template: JST['backbone/admin/templates/tab_template'],
@@ -25,34 +25,28 @@
     },
 
     renderPersonal: function() {
-      this.clear();
-      var personal_view = new PersonalView();
+      var personal_view = new AdminPersonalView();
       this.tab_content.html(personal_view.render().el);
       return this;
     },
 
     renderHall: function() {
-      this.clear();
-      var hall_view = new HallView();
+      var hall_view = new AdminHallView();
       this.tab_content.html(hall_view.render().el);
       return this;
     },
 
     renderMenu: function() {
-      this.clear();
-      var menu_view = new MenuView();
+      var menu_view = new AdminMenuView();
       this.tab_content.html(menu_view.render().el);
-      return this;
-    },
 
-    clear: function() {
-      this.tab_content.html('');
+      return this;
     }
 
   });
 
 })(
-window.RS.Views.PersonalView,
-window.RS.Views.HallView,
-window.RS.Views.MenuView
+window.RS.Views.AdminPersonalView,
+window.RS.Views.AdminHallView,
+window.RS.Views.AdminMenuView
 );

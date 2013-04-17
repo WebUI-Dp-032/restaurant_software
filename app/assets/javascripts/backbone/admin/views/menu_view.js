@@ -1,6 +1,6 @@
 (function (){
 
-  window.RS.Views.MenuView = Backbone.View.extend({
+  window.RS.Views.AdminMenuView = Backbone.View.extend({
     className: 'tab-pane active',
     id: 'menu',
 

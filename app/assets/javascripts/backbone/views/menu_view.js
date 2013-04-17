@@ -1,4 +1,6 @@
-(function (GroupView, GroupCollection) {
+(function (GroupView,
+           GroupCollection
+           ) {
   window.RS.Views.MenuView = Backbone.View.extend({
 
     tagName: "div",
@@ -6,8 +8,9 @@
     template: JST['backbone/templates/menu_template'],
 
     initialize: function() {
-        this.groups = new GroupCollection();
-        this.groups.reset(window.Waiter.Menu.Groups);
+        this.groups_collection = new GroupCollection();
+        this.groups_collection.on('reset', this.addAll, this);
+        this.groups_collection.fetch();
     },
 
     render: function() {
@@ -21,7 +24,7 @@
     },
 
     addAll: function() {
-     this.groups.each(this.addOne);
+     this.groups_collection.each(this.addOne);
      return this;
     }
 

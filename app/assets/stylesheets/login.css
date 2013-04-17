@@ -1,0 +1,44 @@
+body {
+	background: #fff;
+}
+
+#login-box {
+	width: 310px;
+	height: 300px;
+	background: #fff;
+	border: 1px solid #333;
+	border-radius: 10px;
+	margin: 50px auto;
+	box-shadow: 10px 10px 60px #000;
+
+}
+
+#login-box table {
+	margin: 0 auto;
+}
+
+#user_email, #user_password {
+	width:150px;
+}
+
+label[for^="user"] {
+	margin-right: 15px;
+} 
+
+#user_remember_me {
+	float: left;
+	margin-left: 115px;
+}
+
+
+#login-box table tbody tr td[colspan="2"] {
+	text-align: right;
+}
+
+.input-login {
+	width: 150px;
+}
+
+.btn-login {
+    margin-right: 35%;
+}
