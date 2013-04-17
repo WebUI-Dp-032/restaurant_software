@@ -21918,3 +21918,994 @@ Processing by TablesController#index as JSON
   [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
   [1m[36mTable Load (0.7ms)[0m  [1mSELECT "tables".* FROM "tables" ORDER BY tables.name asc[0m
 Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 1.7ms)
+  [1m[36m (26.3ms)[0m  [1mCREATE TABLE "admins" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.4ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'admins'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (2.1ms)[0m  [1mCREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email")[0m
+  [1m[35m (12.2ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'admins'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mColumns for index index_admins_on_email on admins (1.8ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16641
+ AND a.attnum IN (2)
+[0m
+  [1m[35m (2.3ms)[0m  CREATE UNIQUE INDEX "index_admins_on_reset_password_token" ON "admins" ("reset_password_token")
+  [1m[36m (2.8ms)[0m  [1mDROP TABLE "categories"[0m
+  [1m[35m (6.4ms)[0m  CREATE TABLE "categories" ("id" serial primary key, "name" text, "attachment" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.8ms)[0m  [1mDROP TABLE "foods"[0m
+  [1m[35m (4.7ms)[0m  CREATE TABLE "foods" ("id" serial primary key, "order_id" integer, "title" character varying(255), "number" integer, "cost" integer, "summary" integer, "delivered" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (2.8ms)[0m  [1mDROP TABLE "groups"[0m
+  [1m[35m (6.2ms)[0m  CREATE TABLE "groups" ("id" serial primary key, "name" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (2.6ms)[0m  [1mDROP TABLE "items"[0m
+  [1m[35m (5.7ms)[0m  CREATE TABLE "items" ("id" serial primary key, "name" text, "attachment" text, "price" integer, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (2.0ms)[0m  [1mDROP TABLE "orders"[0m
+  [1m[35m (4.3ms)[0m  CREATE TABLE "orders" ("id" serial primary key, "table_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "status" character varying(255), "total" integer) 
+  [1m[36m (3.8ms)[0m  [1mCREATE TABLE "roles" ("id" serial primary key, "name" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "roles_users" ("role_id" integer, "user_id" integer) 
+  [1m[36m (2.9ms)[0m  [1mDROP TABLE "tables"[0m
+  [1m[35m (5.7ms)[0m  CREATE TABLE "tables" ("id" serial primary key, "name" character varying(255), "status" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "position_x" integer, "position_y" integer) 
+  [1m[36m (6.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "username" character varying(255), "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (1.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (2.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mColumns for index index_users_on_email on users (0.5ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16728
+ AND a.attnum IN (2)
+[0m
+  [1m[35m (2.8ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.7ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130414190823')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130414155734')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130414173758')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130414184620')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130414185219')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130414190740')[0m
+  [1m[35m (0.4ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "tables"[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (5.7ms)[0m  [1mINSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 1], ["position_x", 100], ["position_y", 100], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 2], ["position_x", 100], ["position_y", 200], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 3], ["position_x", 300], ["position_y", 300], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 4], ["position_x", 200], ["position_y", 100], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 5], ["position_x", 300], ["position_y", 100], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 6], ["position_x", 500], ["position_y", 250], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 7], ["position_x", 500], ["position_y", 150], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "tables" ("created_at", "name", "position_x", "position_y", "status", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", 8], ["position_x", 400], ["position_y", 150], ["status", "free"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.1ms)[0m  DELETE FROM "groups"
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "groups" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "foods"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "groups" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "drinks"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "groups" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "desserts"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "groups" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "karaoke"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (1.3ms)[0m  [1mINSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["attachment", "foods"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "hot-meals"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["attachment", "foods"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "snacks"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["attachment", "foods"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "pizza"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["attachment", "drinks"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "tea"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["attachment", "drinks"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "coffee"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["attachment", "drinks"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "beer"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["attachment", "drinks"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "vodka"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["attachment", "desserts"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "icecream"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["attachment", "desserts"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "cakes"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "categories" ("attachment", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["attachment", "desserts"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["name", "jelly"], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "items"
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "hot-meals"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "soup description"], ["name", "soup"], ["price", 10], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "hot-meals"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "borsch description"], ["name", "borsch"], ["price", 15], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "snacks"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "sandwich description"], ["name", "sandwiches"], ["price", 20], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "pizza"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "margarita description"], ["name", "margarita"], ["price", 23], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "pizza"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "chicago-style description"], ["name", "chicago-style"], ["price", 11], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "pizza"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "hawaiian description"], ["name", "hawaiian"], ["price", 12], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "tea"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "black tea description"], ["name", "black"], ["price", 14], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "tea"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "green tea description"], ["name", "green"], ["price", 17], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "coffee"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "latte description"], ["name", "latte"], ["price", 21], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "beer"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "hoegaarden description"], ["name", "hoegaarden"], ["price", 20], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "vodka"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "absolut description"], ["name", "absolut"], ["price", 152], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "icecream"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "strawberry description"], ["name", "strawberry"], ["price", 14], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "cakes"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "napoleon description"], ["name", "napoleon"], ["price", 40], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["attachment", "jelly"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "yellow jelly description"], ["name", "yellow"], ["price", 10], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "items" ("attachment", "created_at", "description", "name", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["attachment", "jelly"], ["created_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00], ["description", "red jelly description"], ["name", "red"], ["price", 10], ["updated_at", Mon, 15 Apr 2013 12:00:40 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (0.5ms)[0m  DELETE FROM "users"
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT 1 FROM "users" WHERE "users"."email" = 'waiter@rsoft.com' LIMIT 1
+  [1m[36mSQL (1.6ms)[0m  [1mINSERT INTO "users" ("admin", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "updated_at", "username") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"[0m  [["admin", false], ["created_at", Mon, 15 Apr 2013 12:00:41 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "waiter@rsoft.com"], ["encrypted_password", "$2a$10$u9VFBqxbYxTifO5tjNZ6t.cO1aLCmQuDEpV7LsiziHO/BAg3K7VDG"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Mon, 15 Apr 2013 12:00:41 UTC +00:00], ["username", "waiter1"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mSQL (1.0ms)[0m  [1mDELETE FROM "admins"[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mAdmin Exists (0.9ms)[0m  [1mSELECT 1 FROM "admins" WHERE "admins"."email" = 'admin@rsoft.com' LIMIT 1[0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "admins" ("created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["created_at", Mon, 15 Apr 2013 12:00:41 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "admin@rsoft.com"], ["encrypted_password", "$2a$10$JnvKZOVo6Dv3/tI//k/JG.PtfMNBMWxWqnZD/1/sAMWQpfIGBzrUe"], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Mon, 15 Apr 2013 12:00:41 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 10.0.2.2 at 2013-04-15 12:01:02 +0000
+Processing by UserController#index as HTML
+Completed 401 Unauthorized in 25ms
+
+
+Started GET "/users/login" for 10.0.2.2 at 2013-04-15 12:01:04 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (50.6ms)
+  [1m[36mGroup Load (0.9ms)[0m  [1mSELECT "groups".* FROM "groups" [0m
+  [1m[35mCategory Load (0.8ms)[0m  SELECT "categories".* FROM "categories" 
+  [1m[36mItem Load (0.7ms)[0m  [1mSELECT "items".* FROM "items" [0m
+Completed 200 OK in 387ms (Views: 246.5ms | ActiveRecord: 23.7ms)
+
+
+Started GET "/assets/.css" for 10.0.2.2 at 2013-04-15 12:01:06 +0000
+Served asset /.css - 404 Not Found (7ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.css"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started GET "/assets/.js" for 10.0.2.2 at 2013-04-15 12:01:07 +0000
+Served asset /.js - 404 Not Found (8ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.js"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/" for 10.0.2.2 at 2013-04-17 07:07:57 +0000
+Processing by UserController#index as HTML
+Completed 401 Unauthorized in 135ms
+
+
+Started GET "/users/login" for 10.0.2.2 at 2013-04-17 07:07:59 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (102.3ms)
+  [1m[36mGroup Load (60.1ms)[0m  [1mSELECT "groups".* FROM "groups" [0m
+  [1m[35mCategory Load (1.4ms)[0m  SELECT "categories".* FROM "categories" 
+  [1m[36mItem Load (2.7ms)[0m  [1mSELECT "items".* FROM "items" [0m
+Completed 200 OK in 3597ms (Views: 549.4ms | ActiveRecord: 2786.2ms)
+
+
+Started GET "/assets/.css" for 10.0.2.2 at 2013-04-17 07:08:03 +0000
+Served asset /.css - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.css"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/.js" for 10.0.2.2 at 2013-04-17 07:08:03 +0000
+Served asset /.js - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.js"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/waiter" for 10.0.2.2 at 2013-04-17 07:08:27 +0000
+
+ActionController::RoutingError (No route matches [GET] "/waiter"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/waiters" for 10.0.2.2 at 2013-04-17 07:08:31 +0000
+Processing by WaitersController#index as HTML
+PG::Error: ERROR:  relation "waiters" does not exist
+LINE 4:              WHERE a.attrelid = '"waiters"'::regclass
+                                        ^
+:             SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+              FROM pg_attribute a LEFT JOIN pg_attrdef d
+                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+             WHERE a.attrelid = '"waiters"'::regclass
+               AND a.attnum > 0 AND NOT a.attisdropped
+             ORDER BY a.attnum
+
+Completed 500 Internal Server Error in 18ms
+
+ActiveRecord::StatementInvalid (PG::Error: ERROR:  relation "waiters" does not exist
+LINE 4:              WHERE a.attrelid = '"waiters"'::regclass
+                                        ^
+:             SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+              FROM pg_attribute a LEFT JOIN pg_attrdef d
+                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+             WHERE a.attrelid = '"waiters"'::regclass
+               AND a.attnum > 0 AND NOT a.attisdropped
+             ORDER BY a.attnum
+):
+  app/controllers/waiters_controller.rb:5:in `index'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.9ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (29.7ms)
+  [1m[36m (18.8ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateOrders (20130328204803)
+Migrating to CreateFoods (20130328205249)
+Migrating to AddStatusToOrders (20130329183430)
+Migrating to CreateTables (20130330102153)
+Migrating to AddTotalToOrders (20130330124328)
+Migrating to CreateGroups (20130405000326)
+Migrating to CreateCategories (20130405000440)
+Migrating to CreateItems (20130405000536)
+Migrating to AddPositionsToTables (20130412200714)
+Migrating to DeviseCreateUsers (20130414155734)
+Migrating to AddUsernameToUsers (20130414173758)
+Migrating to DeviseCreateAdmins (20130414184620)
+Migrating to AddAdminToUsers (20130414185219)
+Migrating to CreateRoles (20130414190740)
+Migrating to UsersHaveAndBelongToManyRoles (20130414190823)
+Migrating to CreateWaiters (20130417070725)
+  [1m[35m (10.3ms)[0m  BEGIN
+  [1m[36m (396.2ms)[0m  [1mCREATE TABLE "waiters" ("id" serial primary key, "integer" character varying(255), "name" character varying(255), "login" character varying(255), "password" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (15.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130417070725')
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mPK and serial sequence (1.9ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"admins"'::regclass
+[0m
+  [1m[35m (16.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'admins'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mColumns for index index_admins_on_email on admins (0.6ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16641
+ AND a.attnum IN (2)
+[0m
+  [1m[35mColumns for index index_admins_on_reset_password_token on admins (0.4ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16641
+ AND a.attnum IN (4)
+
+  [1m[36mPK and serial sequence (1.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"categories"'::regclass
+[0m
+  [1m[35m (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'categories'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (1.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"foods"'::regclass
+[0m
+  [1m[35m (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'foods'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (1.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"groups"'::regclass
+[0m
+  [1m[35m (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'groups'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (2.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"items"'::regclass
+[0m
+  [1m[35m (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'items'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (1.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"orders"'::regclass
+[0m
+  [1m[35m (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'orders'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (1.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"roles"'::regclass
+[0m
+  [1m[35m (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (1.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"roles_users"'::regclass
+[0m
+  [1m[35mPK and custom sequence (22.2ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"roles_users"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+
+  [1m[36m (0.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'roles_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (1.6ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"tables"'::regclass
+
+  [1m[36m (1.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'tables'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (1.4ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"users"'::regclass
+
+  [1m[36m (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mColumns for index index_users_on_email on users (0.4ms)[0m   SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16728
+ AND a.attnum IN (2)
+
+  [1m[36mColumns for index index_users_on_reset_password_token on users (0.4ms)[0m  [1m SELECT a.attnum, a.attname
+ FROM pg_attribute a
+ WHERE a.attrelid = 16728
+ AND a.attnum IN (4)
+[0m
+  [1m[35mPK and serial sequence (1.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"waiters"'::regclass
+
+  [1m[36m (0.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'waiters'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+
+
+Started GET "/waiters" for 10.0.2.2 at 2013-04-17 07:10:51 +0000
+Processing by WaitersController#index as HTML
+  [1m[36mWaiter Load (0.6ms)[0m  [1mSELECT "waiters".* FROM "waiters" [0m
+  Rendered waiters/index.html.erb within layouts/application (5.5ms)
+  [1m[35mGroup Load (0.5ms)[0m  SELECT "groups".* FROM "groups" 
+  [1m[36mCategory Load (0.7ms)[0m  [1mSELECT "categories".* FROM "categories" [0m
+  [1m[35mItem Load (0.6ms)[0m  SELECT "items".* FROM "items" 
+Completed 200 OK in 271ms (Views: 172.3ms | ActiveRecord: 23.2ms)
+
+
+Started GET "/assets/.css" for 10.0.2.2 at 2013-04-17 07:10:52 +0000
+Served asset /.css - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.css"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/.js" for 10.0.2.2 at 2013-04-17 07:10:52 +0000
+Served asset /.js - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.js"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/" for 10.0.2.2 at 2013-04-17 19:53:50 +0000
+Processing by UserController#index as HTML
+Completed 401 Unauthorized in 41ms
+
+
+Started GET "/users/login" for 10.0.2.2 at 2013-04-17 19:53:50 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (51.6ms)
+  [1m[36mGroup Load (0.6ms)[0m  [1mSELECT "groups".* FROM "groups" [0m
+  [1m[35mCategory Load (0.9ms)[0m  SELECT "categories".* FROM "categories" 
+  [1m[36mItem Load (0.8ms)[0m  [1mSELECT "items".* FROM "items" [0m
+Completed 200 OK in 548ms (Views: 403.5ms | ActiveRecord: 33.2ms)
+
+
+Started GET "/assets/.js" for 10.0.2.2 at 2013-04-17 19:53:51 +0000
+Served asset /.js - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.js"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/assets/.css" for 10.0.2.2 at 2013-04-17 19:53:51 +0000
+Served asset /.css - 404 Not Found (7ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.css"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/admin" for 10.0.2.2 at 2013-04-17 19:54:01 +0000
+Processing by AdminController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/admins/login" for 10.0.2.2 at 2013-04-17 19:54:01 +0000
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (14.3ms)
+  [1m[35mGroup Load (0.7ms)[0m  SELECT "groups".* FROM "groups" 
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories" [0m
+  [1m[35mItem Load (0.5ms)[0m  SELECT "items".* FROM "items" 
+Completed 200 OK in 306ms (Views: 120.5ms | ActiveRecord: 168.8ms)
+
+
+Started GET "/assets/.js" for 10.0.2.2 at 2013-04-17 19:54:02 +0000
+Served asset /.js - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.js"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/.css" for 10.0.2.2 at 2013-04-17 19:54:02 +0000
+Served asset /.css - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/.css"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/vagrant/.rvm/rubies/ruby-1.9.3-p392/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started POST "/admins/login" for 10.0.2.2 at 2013-04-17 19:58:06 +0000
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"acBTz9UIT0K5yNk9HS+smcrw5iZ/JyxiVizqK7PU4XI=", "admin"=>{"email"=>"admin@rsoft.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mAdmin Load (54.6ms)[0m  [1mSELECT "admins".* FROM "admins" WHERE "admins"."email" = 'admin@rsoft.com' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (44.6ms)[0m  [1mUPDATE "admins" SET "last_sign_in_at" = '2013-04-17 19:58:07.301912', "current_sign_in_at" = '2013-04-17 19:58:07.301912', "last_sign_in_ip" = '10.0.2.2', "current_sign_in_ip" = '10.0.2.2', "sign_in_count" = 1, "updated_at" = '2013-04-17 19:58:07.303626' WHERE "admins"."id" = 1[0m
+  [1m[35m (1.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 437ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 10.0.2.2 at 2013-04-17 19:58:07 +0000
+Processing by AdminController#index as HTML
+  [1m[36mAdmin Load (0.7ms)[0m  [1mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 1 LIMIT 1[0m
+  Rendered admin/index.html.erb within layouts/application (0.4ms)
+Compiled admin/admin.css  (2ms)  (pid 4005)
+Compiled admin/bootstrap_and_overrides.css  (729ms)  (pid 4005)
+Compiled admin.css  (1059ms)  (pid 4005)
+Compiled jquery.js  (1ms)  (pid 4005)
+Compiled jquery_ujs.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-transition.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-alert.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-modal.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-dropdown.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-scrollspy.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-tab.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-tooltip.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-popover.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-button.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-collapse.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-carousel.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-typeahead.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap/bootstrap-affix.js  (0ms)  (pid 4005)
+Compiled twitter/bootstrap.js  (685ms)  (pid 4005)
+Compiled underscore.js  (0ms)  (pid 4005)
+Compiled backbone.js  (0ms)  (pid 4005)
+Compiled backbone_rails_sync.js  (0ms)  (pid 4005)
+Compiled backbone_datalink.js  (0ms)  (pid 4005)
+Compiled backbone.localStorage.js  (1ms)  (pid 4005)
+Completed 500 Internal Server Error in 3081ms
+
+ActionView::Template::Error (require_tree argument must be a directory
+  (in /vagrant/restaurant_software/app/assets/javascripts/backbone/admin.js.coffee:3)):
+    4: 
+    5:   <title>RestaurantSoftware</title>
+    6:   <%= stylesheet_link_tag    @role, :media => "all" %>
+    7:   <%= javascript_include_tag @role %>
+    8:   <%= csrf_meta_tags %>
+    9:   <script>
+    10: 
+  app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1841662999374209514_35459420'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.3ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-1.9.3-p392/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (22.2ms)
