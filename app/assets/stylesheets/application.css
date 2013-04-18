@@ -5,5 +5,5 @@
  *= require_self
  *= require_tree ./main
  *= require_tree ./admin
- *= require bootstrap_and_overrides
+ *= require 'twitter/bootstrap'
  */
