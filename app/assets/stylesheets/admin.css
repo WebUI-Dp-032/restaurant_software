@@ -1,13 +1,396 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree ./admin
+/*------------------------------------------------------Helpers*/
+.centered {
+	text-align: center;
+}
+
+.center-box {
+	margin: 0 auto;
+}
+
+.wrap {
+	height: 650px;
+}
+
+.box {
+	height: 100%;
+	margin-left:60px;
+}
+
+.none {
+	margin: 0;
+}
+
+.indent {
+	margin-top: 10px;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-clear {
+	clear: both;
+}
+
+.acord-list {
+	position: relative;
+}
+
+.container .row ul.nav li.active {
+	font-weight: bold;
+}
+.btn-show {
+	position: absolute;
+	top:3px;
+	right: 3px;
+
+}
+
+/*-------------------------------------------------End of helpers*/
+
+/*-------------------------------------------------------------------------------------Main block*/
+#vertical-menu {
+	height: 650px;
+}
+
+.row .span12 .nav li:first-child {
+	margin-right: 30px;
+}
+
+.row .span12 .nav li:first-child h2 {
+	margin: 0 0 -3px 0;
+	padding-right: 20px;
+}
+/*------------------------------------------Clear margin in sub-navigation*/
+#personal .tabbable .nav li:first-child {
+	margin-right: 0px;
+}
+
+#hall .tabbable .nav li:first-child {
+	margin-right: 0px;
+}
+
+#hall .tabbable .nav li:first-child {
+	margin-right: 0px;
+}
+
+#menu .tabbable .nav li:first-child {
+	margin-right: 0px;
+}
+/*-----------------------------------End of clear margin in sub-navigation*/
+
+/*--------------------------------------------Manage personal --> watch waiter list*/
+#waiter-create {
+	display: none;
+}
+
+#hide-waiter-create {
+	float: left;
+}
+
+#show-waiter-create{
+	margin: 7px 0 0 15px;
+}
+/*#waiter-list .accordion-group {
+	width: 585px;
+}*/
+/*#waiter-list div.accordion-body.collapse table tbody tr td button {
+	width: 68px;
+}
 */
+
+
+
+
+
+div.accordion-body.collapse table tbody tr td input[type="text"] {
+	margin: 0;
+}
+/*-------------------------------------End of Manage personal --> watch waiter list*/
+
+/*-----------------------------------------------Manage hall*/
+#table-box {
+	width: 100%;
+	height: 100%;
+}
+
+#table-centered {
+	width: 750px;
+	height: 610px;
+	margin: 0 auto;	
+}
+
+#hall-form, #table-form {
+	width: 57px;
+}
+
+#hall-form {
+	float: left;
+}
+
+#table-form {
+	margin-left: 691px;
+}
+/*--------------------------button form*/
+.rec-btn {
+	padding: 9px 12px;
+	height: 37px;
+}
+
+.rectangle {
+	width: 27px;
+	height: 17px;
+	background:#333;
+}
+
+.square, .circle {
+	width: 27px;
+	height: 27px;
+	background:#333;
+}
+
+.circle {
+	border-radius: 20px;
+}
+/*------------------end of button form*/
+
+/*---------------------------------------------------Map*/
+#map-view {
+	width: 610px;
+	height: 410px;
+	padding: 10px;
+	float: left;
+	background: #fff;
+}
+/*----------------------------------------View map*/
+.rectangle-map, .circle-map, .square-map{
+	margin:0 auto;
+	background: #eee;
+	border: 1px solid #666;
+}
+
+.rectangle-map {
+	width: 600px;
+	height: 400px;
+}
+
+.circle-map {
+	height: 400px;
+	width: 400px;
+	border-radius: 100%;
+}
+.square-map {
+	height: 400px;
+	width: 400px;
+}
+/*----------------------------------end of View map*/
+/*-----------------------------------------end of Map*/
+
+/*---------------------------------Edit table*/
+#edit-table table tbody tr td {
+	vertical-align: middle;
+}
+
+#table-description,
+#table-capacity {
+	margin: 0;
+}
+/*-------------------------------end of Edit table*/
+/*-----------------------------------------------------end of Manege hall*/
+
+
+/*---------------------------------------------------------Manage menu*/
+
+#menu-box {
+	/*width: %;
+	height: 610px;
+	background: #333;
+	margin: 0 auto;*/
+}
+
+
+.category-name{
+	width: 100px;
+}
+
+#show-category, #show-dishes{
+	display: none;
+}
+
+
+#add-category-form .row{
+	margin-left: 10px;
+	float: left;
+}
+#add-category-form h3 {
+	margin-top: 0;
+	float: left;
+}
+
+#add-category-form .row .span {
+	margin-top: 7px;
+}
+
+
+#add-category-form .row .span + .span {
+	margin-top: 6px;
+}
+#add-category-btn {
+	margin: 5px 0 0 10px;
+}
+
+
+
+.select-category {
+	width: 150px;
+}
+.dishes-name {
+	width: 100px;
+}
+.dishes-discription {
+	width: 150px;
+}
+
+.dishes-price {
+	width: 70px;
+}
+
+
+#add-dishes-form .row{
+	margin-left: 10px;
+	float: left;
+}
+#add-dishes-form h3 {
+	margin-top: 0;
+	float: left;
+}
+
+#add-dishes-form .row .span {
+	margin-top: 7px;
+}
+
+
+#add-dishes-form .row .span + .span {
+	margin-top: 6px;
+}
+#add-dishes-btn {
+	margin: 5px 0 0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Manage menu*/
+#change-food-box {
+/*	height: 290px;
+	overflow: auto;
+}*/
+/*************/
+
+
+
+/*Manage category*/
+
+/*.group-list {
+	width: 100px;
+}
+
+.category-name {
+	width: 90px;
+}
+
+#add-category {
+	float: left;
+	width: 220px;
+}
+
+#change-category {
+	float: right;
+	width: 280px;
+}*/
+/****************/
+
+
+/*Manage food*/
+/*#add-food {
+	width: 400px;
+}
+#add-food thead tr td label {
+	text-align: center;
+}
+
+#add-food tbody tr td {
+	vertical-align: middle;
+	width: 40px;
+}
+
+#change-food tbody tr td {
+	vertical-align: middle;
+	width: 40px;
+}
+#change-food  tbody tr td input,
+#change-food  tbody tr td select {
+	margin: 0;
+}
+
+.food-title {
+	width: 100px;
+}
+.category-list {
+	width: 130px;
+}
+.food-discription {
+	width: 130px;
+}
+.food-price {
+	width: 50px;
+}
+*/
+/*************/
+
+
+
+
+
+
+
+
+/*Footer*/
+footer {
+	margin-top:20px;
+	padding-top: 5px; 
+	border-top: 1px solid #d4d4d4;
+	font-size: 13pt;
+}
+/*------*/
+
