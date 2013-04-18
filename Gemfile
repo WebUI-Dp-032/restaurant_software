@@ -11,12 +11,12 @@ gem "rails-backbone"
 gem "ejs"
 gem 'devise'
 gem 'cancan'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 group :assets do
   gem 'less-rails'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  gem 'sass-rails', "~> 3.2.3"
-#  gem 'coffee-rails', "~> 3.2.3"
+# gem 'sass-rails', "~> 3.2.3"
+# gem 'coffee-rails', "~> 3.2.3"
   gem 'uglifier'
 end
 
