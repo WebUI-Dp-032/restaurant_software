@@ -60,3 +60,5 @@
     User.delete_all
     User.create(email: 'waiter@rsoft.com', username:'waiter', password: 'waiter', password_confirmation: 'waiter', admin: false)
     User.create(email: 'admin@rsoft.com', username:'admin', password: 'admin', password_confirmation: 'admin', admin:true)
+
+    

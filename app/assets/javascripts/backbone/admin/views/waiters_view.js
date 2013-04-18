@@ -5,14 +5,24 @@
 
     initialize: function() {
       this.collection = new WaitersCollection(); 
-      this.collection.bind("add", this.createWaiter, this);
-      this.collection.bind("change", this.changeWaiter, this);
+      this.collection.on("add", this.createWaiter, this);
+      this.collection.on("change", this.changeWaiter, this);
+      //this.collection.on("reset", this.renderAll, this);
+      //this.collection.fetch();
      },
     
     el: $("#waiter-create"),
     
     events: {
       "click #hide-waiter-create"   : "addWaiter"
+    },
+
+    renderAll: function() {
+      this.collection.each(function(index, value){
+        var view = new AdminWaiterView({model: value});
+        $("#waiter-list").append(view.render().el);
+      });
+
     },
 
     createWaiter: function(model_this) {
@@ -32,8 +42,8 @@
       $(".addField").each(function(index, value){
         args[index] = $(value).val();
       });
-      var new_id = this.collection.length;
-      this.collection.create(new WaiterModel({name : args[0], login : args[1], password : args[2], id: ++new_id}));
+      //var new_id = this.collection.length;
+      this.collection.create(new WaiterModel({name : args[0], login : args[1], password : args[2]}));
       this.clearInputs();
 
     },

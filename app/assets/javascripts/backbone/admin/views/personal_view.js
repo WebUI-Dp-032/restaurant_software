@@ -2,7 +2,6 @@
 
   window.RS.Views.AdminPersonalView = Backbone.View.extend({
     className: 'tab-pane active',
-    id: 'personal',
 
     template: JST['backbone/admin/templates/personal_template'],
 
@@ -28,6 +27,7 @@
     createWaiter:function() {
       $("#waiter-create").hide("slow");
       $("#show-waiter-create").show("slow");
+      this.waiters_view.addWaiter();
     }
 
 
