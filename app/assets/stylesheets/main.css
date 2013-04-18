@@ -10,4 +10,7 @@
  *
  *= require_self
  *= require_tree ./main
+ *= require_tree ./admin
+ *= require login
+
 */
