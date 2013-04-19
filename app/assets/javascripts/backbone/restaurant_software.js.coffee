@@ -40,5 +40,4 @@ window.RS =
   start: () ->
     user = window.RS.user
     role = (if (user.admin) then "admin" else "waiter")
-    window.RS.Router.route(role, role)
-    window.RS.Router.navigate(role, {trigger: true})
+    window.RS.Router.navigate('proxy/' + role, {trigger: true})
