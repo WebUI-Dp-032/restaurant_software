@@ -1,5 +1,5 @@
 RestaurantSoftware::Application.routes.draw do
-  devise_for :users, :path_names => {sign_in: 'login', sign_out: 'logout'}
+  devise_for :users, :path_names => {sign_in: 'login', sign_out: 'logout', sign_up: 'reg'}
 
   get 'orders/get_order_by_table/:table_id' => 'orders#get_order_by_table'
   get 'foods/get_foods_by_order/:order_id' => 'foods#get_foods_by_order'
@@ -9,10 +9,12 @@ RestaurantSoftware::Application.routes.draw do
   resources :groups
   resources :foods
   resources :tables
+  resources :users
 
-  get 'admin' => 'user#index'
-  get 'waiter' => 'user#index'
+  post 'users/create' => 'users#create_user'
 
-  root :to => 'user#index'
+  get 'admin' => 'users#start'
+  get 'waiter' => 'users#start'
+  root :to => 'users#start'
 
 end

@@ -1,14 +1,12 @@
-(function (AdminWaiterView){
+(function (AdminWaiterView, WaitersCollection, WaiterModel){
 
   window.RS.Views.AdminWaitersView = Backbone.View.extend({
     el: $('#waiter-list'),
 
     initialize: function() {
       this.collection = new WaitersCollection(); 
-      this.collection.on("add", this.createWaiter, this);
-      this.collection.on("change", this.changeWaiter, this);
-      //this.collection.on("reset", this.renderAll, this);
-      //this.collection.fetch();
+      this.collection.on("reset", this.renderAll, this);
+      this.collection.fetch();
      },
     
     el: $("#waiter-create"),
@@ -18,23 +16,17 @@
     },
 
     renderAll: function() {
-      this.collection.each(function(index, value){
+      this.collection.each(function(value, index){
         var view = new AdminWaiterView({model: value});
         $("#waiter-list").append(view.render().el);
       });
 
     },
-
-    createWaiter: function(model_this) {
-      var view = new AdminWaiterView({model: model_this});
-      model_this.save();
-     $("#waiter-list").append(view.render().el);
-    },
     
     clearInputs: function() {
-        $("#name").val('Waiter name');
-        $("#login").val('Waiter login');
-        $("#pass").val('Waiter password');
+        $("#name").val('');
+        $("#login").val('');
+        $("#pass").val('');
     },
 
     addWaiter: function() {
@@ -42,18 +34,22 @@
       $(".addField").each(function(index, value){
         args[index] = $(value).val();
       });
-      //var new_id = this.collection.length;
-      this.collection.create(new WaiterModel({name : args[0], login : args[1], password : args[2]}));
+      this.collection.create(new WaiterModel({
+                                              email                 : args[1]+'@r-soft.com',
+                                              name                  : args[0], 
+                                              username              : args[1], 
+                                              password              : args[2],
+                                              password_confirmation : args[2]
+                                            }));
       this.clearInputs();
+      
+      $('#waiter-list').html('');
+      this.collection.fetch();
 
-    },
-
-    changeWaiter: function(model_this) {
-      var view = new AdminWaiterView();
-      view.renderChange(model_this);
-      model_this.save();
     }
 
   });
 
-})(window.RS.Views.AdminWaiterView);
+})(window.RS.Views.AdminWaiterView, 
+   window.RS.Collections.WaitersCollection,
+   window.RS.Models.WaiterModel);

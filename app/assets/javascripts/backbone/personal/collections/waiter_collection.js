@@ -1,8 +1,22 @@
-var WaitersCollection = Backbone.Collection.extend({
+(function (WaiterModel) {
+
+  window.RS.Collections.WaitersCollection = Backbone.Collection.extend({
     
     model: WaiterModel,
+    url:'/users',
 
-     url:'/waiters',
+    create: function(model) {
+      this.add(model);
+      $.post('/users/create', 
+        {user: {
+          email                 : model.get('email'), 
+          username              : model.get('username'), 
+          password              : model.get('password'), 
+          password_confirmation : model.get('password'), 
+          name                  : model.get('name')
+        }});
+    }
+  });
 
-    localStorage: new Store("todos-backbone")
-});
+})(window.RS.Models.WaiterModel);
+  

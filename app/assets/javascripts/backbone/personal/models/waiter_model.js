@@ -1,9 +1,11 @@
-var WaiterModel = Backbone.Model.extend({
-    defaults: function() {
-      return {
-        name : "",
-        login : "",
-        password : ""
-      };
+(function() {
+	window.RS.Models.WaiterModel = Backbone.Model.extend({
+    defaults: {
+      username : "",
+      password : "",
+      password_confirmation: "",
     }
   });
+})();
+
+	

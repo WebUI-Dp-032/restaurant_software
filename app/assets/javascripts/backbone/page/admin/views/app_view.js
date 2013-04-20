@@ -10,7 +10,7 @@
     },
 
     render: function() {
-      $('#container').html(this.template({username: window.RS.username}));
+      $('#container').html(this.template({name: window.RS.name}));
       $('#menu-container').append(this.tab_view.render().el);
     }
 
