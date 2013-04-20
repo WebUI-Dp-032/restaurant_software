@@ -1,0 +1,193 @@
+
+    <div class="tabbable tabs-left">
+      <div id="menu-box">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <span class="brand">Select group</span>
+              <ul class="nav">
+                <li class="active">
+                  <a href="#">Food</a>
+                </li>
+                <li><a href="#">Drink</a></li>
+                <li><a href="#">Deserts</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Add category -->
+        <div id="add-category-form">
+          <h3 >Categories</h3>
+          <div class="row" id="show-category">
+            
+            <div class="span">
+              <input type="text" class="category-name" id="category-name" value="Name"/>
+            </div>
+          </div>
+          <button id="add-category-btn" class="btn btn-success">
+            <i class="icon-plus"></i>
+          </button>
+        </div>
+        <div class="float-clear"></div>   
+
+        <div class="accordion" id="categories">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <div class="acord-list">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#categories" href="#category-1">
+                Meat
+                </a>
+                <button class="btn btn-info btn-show">Show dishes</button>
+              
+              </div>
+              
+            </div>
+            <div id="category-1" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <div class="row">
+                  <div class="span">
+                    <div class="btn-group" data-toggle="buttons-radio">
+                      <button class="btn btn-primary active">Food</button>
+                      <button class="btn btn-primary">Drink</button>
+                      <button class="btn btn-primary">Deserts</button>
+                    </div>
+                  </div>
+                  <div class="span">
+                    <input type="text" class="category-name" value="Meat"/>
+                  </div>
+                  <div class="span">
+                    <button class="btn btn-warning">Change</button>
+                  </div>
+                  <div class="span">
+                      <button class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <div class="acord-list">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#categories" href="#category-2">
+                Something else
+              </a>
+              <button class="btn btn-info btn-show">Show dishes</button>
+              </div>
+            </div>
+            <div id="category-2" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <div class="row">
+                  <div class="span">…Текст и контент…</div>
+                  <div class="span">
+                      <button class="btn btn-warning">Change</button>
+                  </div>
+                  <div class="span">
+                      <button class="btn btn-danger">Delete</button>
+                  </div>
+                </div>  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Add category -->
+
+        <!-- Add dishes -->
+        <div id="add-dishes-form">
+          <h3>Dishes</h3>
+          <div class="row" id="show-dishes">
+
+            <div class="span">
+              <input type="text" class="dishes-name" id="dishes-name" value="Name"/>
+            </div>
+
+            <div class="span">
+              <select id="select-category">
+                <option>Select category</option>
+                <option>Any category</option>
+                <option>Any category</option>
+                <option>Any category</option>
+              </select>
+            </div>
+            
+            <div class="span">
+            <textarea rows="1" class="dishes-discription" id="dishes-discription">Discription</textarea>
+            </div>
+
+            <div class="span">
+              <input type="text" class="dishes-price" id="dishes-price" value="Price"/>
+            </div>
+          </div>
+
+          <button id="add-dishes-btn" class="btn btn-success">
+            <i class="icon-plus"></i>
+          </button>
+        </div>
+        <div class="float-clear"></div>   
+
+        <div class="accordion" id="dishes">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#dishes" href="#dishes-1">Duck</a>
+            </div>
+            <div id="dishes-1" class="accordion-body collapse">
+              <div class="accordion-inner">
+                
+                <div class="row">
+                  <div class="span">
+                    <input type="text" class="dishes-name" value="Duck"/>
+                  </div>
+
+                  <div class="span">
+                    <select class="select-category">
+                      <option selected="selected">Meat</option>
+                      <option>Any category</option>
+                      <option>Any category</option>
+                    </select>
+                  </div>
+                  
+                  <div class="span">
+                  <textarea rows="1" class="dishes-discription">Tasty</textarea>
+                  </div>
+
+                  <div class="span">
+                    <input type="text" class="dishes-price" value="105.56"/>
+                  </div>
+                  
+                  <div class="span">
+                    <button class="btn btn-warning">Change</button>
+                  </div>
+                  <div class="span">
+                    <button class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+                
+
+              </div>
+            </div>
+          </div>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#dishes" href="#dishes-2"> Something else</a>
+            </div>
+            <div id="dishes-2" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <div class="row">
+                  <div class="span">…Текст и контент…</div>
+                  <div class="span">
+                    <button class="btn btn-warning">Change</button>
+                  </div>
+                  <div class="span">
+                      <button class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Add dishes -->
+    
+      </div>
+    </div>  

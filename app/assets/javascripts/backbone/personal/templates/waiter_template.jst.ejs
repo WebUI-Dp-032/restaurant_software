@@ -1,0 +1,34 @@
+<div class="accordion-heading">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#waiter-list" href="#result-<%= id %>"><%= name %></a>
+</div>
+<div id="result-<%= id %>"  class="accordion-body collapse">
+<div class="accordion-inner">
+	<table>
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Login</td>
+				<td>Password</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<input type="text" class = "change-<%= id %>" class="input-medium" value="<%= name %>" />
+				</td>
+				<td>
+					<input type="text" class = "change-<%= id %>" class="input-medium" value="<%= username %>" />		
+				</td>
+				<td>
+					<input type="text" class = "change-<%= id %>" class="input-medium" value="" />
+				</td>
+				<td>
+					<button class="btn btn-warning">Change</button>	
+				</td>
+				<td>
+					<button class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

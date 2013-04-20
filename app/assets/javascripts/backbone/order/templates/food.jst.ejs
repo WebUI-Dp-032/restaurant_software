@@ -1,0 +1,15 @@
+<td><i id="minus_rows" class="icon-double-angle-left icon-2x"></i></td>
+<td>
+  <div class='overflow <% if (delivered == 1) { %>
+    <%= " done" %>
+    <% } else { %>
+    <%= " not_done" %>
+    <% } %>'
+    ><%= title %></div>
+</td>
+<td>
+  <button class="pull-left btn btn-mini" id="decrease">-</button>
+  <div class="capacity"><%= number %></div>
+  <button class="pull-right btn btn-mini" id="increase">+</button>
+</td>
+<td><span class="summary"><%= cost %> $ </span> </td>
