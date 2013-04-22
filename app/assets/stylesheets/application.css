@@ -12,5 +12,4 @@
  *= require bootstrap_and_overrides
  *= require_tree ./main
  *= require_tree ./admin
- *= require login
 */
