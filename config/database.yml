@@ -1,8 +1,8 @@
 development: &defaults
   adapter: postgresql
   database: restaurant_software_dev
-  username: postgres
-  password: postgres
+  username: restaurant_software
+  password: restaurant_software
   host: 127.0.0.1
 
 test:
