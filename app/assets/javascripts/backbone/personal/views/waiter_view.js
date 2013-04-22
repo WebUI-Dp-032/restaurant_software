@@ -12,7 +12,8 @@
     },
 
     initialize: function() {
-      this.model.on('change', this.render, this)
+      this.model.on('change', this.render, this);
+      Backbone.Mediator.sub('waiter_view_change_controls', this.block, this);
     },
 
     render: function() {
@@ -25,14 +26,18 @@
       this.$el.remove();
      },
 
-     editWaiter: function() {
+    editWaiter: function() {
       var args = {};
       $(".change-"+this.model.get("id")).each(function(index, value){
         args[index] = $(value).val();
       });
-        this.model.save({name : args[0], username : args[1]});
-     }
-
+        this.model.save({
+                          name                  : args[0], 
+                          username              : args[1], 
+                          password              : args[2],
+                          password_confirmation : args[2]
+                        });
+    }
 
   });
 
