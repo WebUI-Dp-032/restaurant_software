@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
- has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles
+  validates :username, :uniqueness => true
  # before_create :create_role
   
   #private
