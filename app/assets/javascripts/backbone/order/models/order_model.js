@@ -17,6 +17,9 @@
     loadOrder: function(table_id) {
       var self = this;
       this.url = '/orders/get_order_by_table/' + table_id + '.json';
+      
+      this.unset('id', {silent: true});
+      this.set({status: '', table_id: table_id});
 
       this.fetch({success: function(order, response) {
         self.url = '/orders/' + order.get('id');
@@ -25,7 +28,8 @@
     },
 
     prepareOrder: function(table_id) {
-      this.set({status: 'opened', table_id: table_id});
+      this.unset('id', {silent: true});
+      this.set({status: 'opened', table_id: table_id, total: 0});
       this.prepare = true;
     },
 

@@ -40,10 +40,6 @@
       }
     },
 
-    restoreEvent: function() {
-      this.model.on('change', this.render, this);
-    },
-
     addFood: function(food) {
       if(this.model.prepare) {
         this.model.createOrder();
