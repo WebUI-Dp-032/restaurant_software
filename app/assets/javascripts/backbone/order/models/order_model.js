@@ -17,7 +17,7 @@
     loadOrder: function(table_id) {
       var self = this;
       this.url = '/orders/get_order_by_table/' + table_id + '.json';
-      this.clear();
+
       this.fetch({success: function(order, response) {
         self.url = '/orders/' + order.get('id');
         Backbone.Mediator.pub('foods_view_load_foods', order.get('id'));
