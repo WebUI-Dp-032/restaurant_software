@@ -25,7 +25,6 @@
     },
 
     prepareOrder: function(table_id) {
-      this.clear();
       this.set({status: 'opened', table_id: table_id});
       this.prepare = true;
     },
