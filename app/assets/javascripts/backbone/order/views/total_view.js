@@ -18,10 +18,9 @@
 
       Backbone.Mediator.sub('selectTable', this.prepareLoadOrder, this);
       Backbone.Mediator.sub('addFoodInOrder', this.addFood, this);
-
     },
 
-    render: function() {
+    render: function(option) {
       this.$el.html(this.template(this.model.attributes));
       return this;
     },
