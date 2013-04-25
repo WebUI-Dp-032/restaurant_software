@@ -12,4 +12,14 @@
 #= require_tree ./admin/collections
 #= require_tree ./admin/templates
 
+
+#= require ./admin/models/table
+#= require ./admin/collections/table
+#= require ./admin/views/table
+
+#= require ./admin/models/map
+#= require ./admin/views/map
+
+#= require ./admin/views/manageHall
 #= require ./admin/views/hall_view
+

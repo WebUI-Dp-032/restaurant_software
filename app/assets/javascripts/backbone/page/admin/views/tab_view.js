@@ -33,12 +33,14 @@
     renderHall: function() {
       var hall_view = new AdminHallView();
       this.tab_content.html(hall_view.render().el);
+      var hallView = new window.RS.Views.ManageHallView({el: $('#hall-wrap')});
       return this;
     },
 
     renderMenu: function() {
       var menu_view = new AdminMenuView();
       this.tab_content.html(menu_view.render().el);
+
 
       return this;
     }

@@ -131,10 +131,10 @@ div.accordion-body.collapse table tbody tr td input[type="text"] {
 #table-form {
 	margin-left: 691px;
 }
+
 /*--------------------------button form*/
 .rec-btn {
 	padding: 9px 12px;
-	height: 37px;
 }
 
 .rectangle {
@@ -163,25 +163,64 @@ div.accordion-body.collapse table tbody tr td input[type="text"] {
 	background: #fff;
 }
 /*----------------------------------------View map*/
-.rectangle-map, .circle-map, .square-map{
-	margin:0 auto;
+.rectangle-hall, .circle-hall, .square-hall{
 	background: #eee;
 	border: 1px solid #666;
+	/****************************************************/
+	position:relative; 
+	left:100px;
+	top:0px;
+	/***************************************************/
 }
 
-.rectangle-map {
+.rectangle-hall {
 	width: 600px;
 	height: 400px;
+	/******************************************************/
+	left:0px;
+	top:0px;
+	/*****************************************************/
 }
 
-.circle-map {
+.circle-hall {
 	height: 400px;
 	width: 400px;
 	border-radius: 100%;
 }
-.square-map {
+.square-hall {
 	height: 400px;
 	width: 400px;
+}
+
+/*******************************************************/
+
+.circle-table {
+	width: 35px;
+	height: 30px;
+	background: #333;
+	border-radius: 100%;
+	color:#fff;
+	text-align:center;
+	font-weight:bold;
+	padding-top:5px;	
+}
+.rectangle-table {
+	width: 50px;
+	height: 27px;
+	background: #333;
+	color:#fff;
+	text-align:center;
+	font-weight:bold;
+	padding-top:3px;
+}
+.square-table {
+	width: 30px;
+	height: 27px;
+	background: #333;
+	color:#fff;
+	text-align:center;
+	font-weight:bold;
+	padding-top:3px;
 }
 /*----------------------------------end of View map*/
 /*-----------------------------------------end of Map*/

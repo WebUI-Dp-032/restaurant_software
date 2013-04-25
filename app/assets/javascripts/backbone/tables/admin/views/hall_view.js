@@ -7,6 +7,7 @@
     template: JST['backbone/tables/admin/templates/hall_template'],
 
     initialize: function() {
+		  // var hallView = new window.RS.Views.ManageHallView();
       
     },
 

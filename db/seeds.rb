@@ -6,14 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
     Table.delete_all
-    Table.create(name: 1, status: "free", position_x: 100, position_y:100)
-    Table.create(name: 2, status: "free", position_x: 100, position_y:200)
-    Table.create(name: 3, status: "free", position_x: 300, position_y:300)
-    Table.create(name: 4, status: "free", position_x: 200, position_y:100)
-    Table.create(name: 5, status: "free", position_x: 300, position_y:100)
-    Table.create(name: 6, status: "free", position_x: 500, position_y:250)
-    Table.create(name: 7, status: "free", position_x: 500, position_y:150)
-    Table.create(name: 8, status: "free", position_x: 400, position_y:150)
+    # Table.create(name: 1, status: "free", position_x: 100, position_y:100)
+    # Table.create(name: 2, status: "free", position_x: 100, position_y:200)
+    # Table.create(name: 3, status: "free", position_x: 300, position_y:300)
+    # Table.create(name: 4, status: "free", position_x: 200, position_y:100)
+    # Table.create(name: 5, status: "free", position_x: 300, position_y:100)
+    # Table.create(name: 6, status: "free", position_x: 500, position_y:250)
+    # Table.create(name: 7, status: "free", position_x: 500, position_y:150)
+    # Table.create(name: 8, status: "free", position_x: 400, position_y:150)
 
 
 #   fish for MenuModule
@@ -61,4 +61,5 @@
     User.create(name: 'Oleg', email: 'waiter@rsoft.com', username:'waiter', password: 'waiter', password_confirmation: 'waiter', admin: false)
     User.create(name: 'Vitaliy', email: 'admin@rsoft.com', username:'admin', password: 'admin', password_confirmation: 'admin', admin:true)
 
-    
+    Option.delete_all
+    Option.create(key: 'form', value: '')
