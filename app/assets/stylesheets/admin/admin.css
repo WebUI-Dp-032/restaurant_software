@@ -39,6 +39,12 @@
 .container .row ul.nav li.active {
 	font-weight: bold;
 }
+
+#menu-box .navbar .container ul li {
+	margin-top: 0;
+}
+
+
 .btn-show {
 	position: absolute;
 	top:3px;
