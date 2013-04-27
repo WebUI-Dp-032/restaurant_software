@@ -10,12 +10,14 @@
     showMap: function() {
         var mapView = new MapView();
         $("body").append($("<div></div>").addClass("shadow"));
-        $("body").append(mapView.render().el);
+        $("body").append($("<div></div>").addClass("map-box"));
+
+        $(".map-box").append(mapView.render().el);
     },
 
     hideMap: function() {
         $(".shadow").remove();
-        $(".map-view").remove();
+        $(".map-box").remove();
     }
 
   });

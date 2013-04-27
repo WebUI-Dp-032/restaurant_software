@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
     @orders = Order.all
 
     respond_to do |format|
-      # format.html # index.html.erb
-      format.html {render 'error'}
+      format.html # index.html.erb
+      # format.html {render 'error'}
       format.json { render json: @orders }
     end
   end

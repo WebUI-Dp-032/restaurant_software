@@ -62,4 +62,4 @@
     User.create(name: 'Vitaliy', email: 'admin@rsoft.com', username:'admin', password: 'admin', password_confirmation: 'admin', admin:true)
 
     Option.delete_all
-    Option.create(key: 'form', value: '')
+    Option.create(key: 'form', value: 'circle-hall')

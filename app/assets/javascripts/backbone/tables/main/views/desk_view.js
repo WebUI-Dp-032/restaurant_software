@@ -10,9 +10,8 @@
         'top':this.model.get('position_y')
       });
 
-      this.$el.addClass("btn btn-info");
+      this.$el.addClass(this.model.get('form'));
       this.$el.html(this.template(this.model.toJSON()));
-
       return this;
     }
   });

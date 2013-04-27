@@ -1,8 +1,11 @@
-  // Model
-var DeskModel = Backbone.Model.extend({
-	defaults: {
-		name: "",
-		position_x:  "",
-		position_y: ""
-	}
-});
+(function () {
+  window.RS.Models.DeskModel = Backbone.Model.extend({
+    defaults: {
+      name: "",
+      id:"",
+      status:"",
+      position_x:  "",
+      position_y: ""
+    }
+  });
+})();
