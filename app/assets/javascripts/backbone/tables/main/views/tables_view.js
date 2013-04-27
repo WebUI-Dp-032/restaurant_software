@@ -1,4 +1,4 @@
-(function (TableCollection, TableItemView, MapView) {
+(function (DeskCollection, TableItemView, MapView) {
 
   window.RS.Views.TablesView = Backbone.View.extend({
 
@@ -13,7 +13,7 @@
     },
 
     initialize: function() {
-      this.collection = new TableCollection();
+      this.collection = new DeskCollection();
       this.collection.on('reset', this.renderAll, this);
       this.collection.fetch();
       // ################################################################+++################
@@ -35,7 +35,7 @@
 
   });
 })(
-window.RS.Collections.TableCollection,
+window.RS.Collections.DeskCollection,
 window.RS.Views.TableItemView,
 window.RS.Views.MapView);
 

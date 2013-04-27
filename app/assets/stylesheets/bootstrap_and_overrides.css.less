@@ -74,6 +74,8 @@
   height: 30px;
   font-size: 24pt;
 }
+
+
 /*-----------*/
 /*Menu module*/
 #menu {
@@ -181,26 +183,47 @@ footer {
   left: 0;
   background: rgba(0,0,0,0.5);
 }
-.map-view {
-  width: 600px;
-  height: 400px;
-  background: #fff;
-  border: 1px solid #000;
-  border-radius: 5px;
+.map-box {
+  width: 610px;
+  height: 410px;
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  margin-left: -300px;
+  margin-top: -205px;
+  margin-left: -305px;
 
 }
-.map-view div {
-  width: 50px;
-  height: 33px;
-  padding-top: 17px;
-  
 
+/*-----------------------View map*/
+.rectangle-hall, .circle-hall, .square-hall{
+  background: #eee;
+  border: 1px solid #666;
+  /****************************************************/
+  position:relative; 
+  left:100px;
+  top:0px;
+  /***************************************************/
 }
+
+.rectangle-hall {
+  width: 600px;
+  height: 400px;
+  /******************************************************/
+  left:0px;
+  top:0px;
+  /*****************************************************/
+}
+
+.circle-hall {
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+}
+.square-hall {
+  height: 400px;
+  width: 400px;
+}
+
 
 .pull-right .price-width {
   width: 150%;
