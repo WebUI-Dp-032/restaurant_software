@@ -7,7 +7,7 @@
     className: "accordion-group",
     template: JST['backbone/menu/admin/templates/item_template'],
     events: {
-        // "click #btn-dishes": "getItems",
+        //"click #btn-dishes": "getItems",
         "click .btn-change-item": "saveItems",
         "click .btn-delete-item" : "delItem"
     },
@@ -60,13 +60,15 @@
     },
 
     addCategory: function(category) {
-      var view = new ChangeCategoryView({model: category});
-      $(".edit-categories").append(view.render().el);
+      console.log(this.model);
+      var category_name = this.model.get("attachment"),
+          view = new ChangeCategoryView({model: category});
+      $(".edit-categories").append(view.render(category_name).el);
     },
 
     getCategories: function() {
      $(".edit-categories").empty();
-     this.categories_collection.each(this.addCategory);
+     this.categories_collection.each(this.addCategory, this);
      return this;
     },
 

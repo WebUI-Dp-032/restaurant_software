@@ -38,7 +38,6 @@
     },
 
     addItem: function(item) {
-      
       var view = new ItemView({model: item});
       $("#items").append(view.render().el);
     },
@@ -55,8 +54,9 @@
     },
 
     addGroup: function(group) {
+      var group_name = $.trim(this.$("#groups .active").text());
       var view = new ChangeGroupView({model: group});
-      $(".edit-groups").append(view.render().el);
+      $(".edit-groups").append(view.render(group_name).el);
     },
 
     getGroups: function() {
@@ -68,7 +68,6 @@
     saveEditedCategory: function () {
       var group_name = $.trim(this.$(".edit-groups .active").text());
       var category_name = $.trim(this.$(".category-name").val());
-      //this.model.set({attachment: group_name, name: category_name});
       this.model.save({attachment: group_name, name: category_name});
       Backbone.Mediator.pub("renderMenu", {});
       return this;

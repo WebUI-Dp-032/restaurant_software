@@ -8,7 +8,10 @@
 
     template: JST['backbone/menu/admin/templates/change_group_template'],
 
-    render: function () {
+    render: function (group_name) {
+      if(group_name === this.model.get("name")) { 
+        this.$el.addClass("active");
+      }
       this.$el.html(this.template(this.model.toJSON()));
       return this;
     }
