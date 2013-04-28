@@ -20,7 +20,7 @@
 		margin-left: -300px;
 		width: 520px;
 		background: #eee no-repeat -200px -80px;
-		position: absolute;
+		position: fixed;
 		z-index: 101;
 		padding: 30px 40px 34px;
 		-moz-border-radius: 5px;
@@ -47,19 +47,15 @@
 		font-weight: bold;
 		cursor: pointer;
 		} 
-	/*
-		
-	NOTES
+
+	#close-description {
+		width: 50px;
+		right: 10px;
+		position: absolute;
+		top: 10px;
+	}
+
+	.icon-remove-sign {
+		font-size: 50px;
+	}
 	
-	Close button entity is &#215;
-	
-	Example markup
-	
-	<div id="myModal" class="reveal-modal">
-		<h2>Awesome. I have it.</h2>
-		<p class="lead">Your couch.  I it's mine.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices aliquet placerat. Duis pulvinar orci et nisi euismod vitae tempus lorem consectetur. Duis at magna quis turpis mattis venenatis eget id diam. </p>
-		<a class="close-reveal-modal">&#215;</a>
-	</div>
-	
-	*/
