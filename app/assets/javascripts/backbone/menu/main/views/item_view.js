@@ -18,9 +18,9 @@
         Backbone.Mediator.pub("addFoodInOrder", {title: name, cost: price});
     },
     getItemDescription: function () {
-        event.stopPropagation();
-        var description = this.model.get("description");
-        Backbone.Mediator.pub("popup", description);
+        var description = this.model.get("description"),
+            name = this.model.get("name");
+        Backbone.Mediator.pub("popup", {description: description, image: "url", name: name});
     }
 
   });

@@ -6,7 +6,8 @@
   className: "reveal-modal",
   template: JST['backbone/menu/main/templates/popup_view_template'],
   events: {
-    "click" : "close"
+    "click #close-description": "close"
+    
   },
 
   initialize: function() {
@@ -14,13 +15,16 @@
   },
 
   render: function(data) {
-    var view = this.$el.html(this.template({ data: data }));
+    console.log(data);
+    var view = this.$el.html(this.template(data));
+    $("body").append($("<div></div>").addClass("shadow"));
     $("body").append(view);
     return this;
   },
 
   close: function () {
     this.el.remove();
+    $(".shadow").remove();
   }
 });
 })();
