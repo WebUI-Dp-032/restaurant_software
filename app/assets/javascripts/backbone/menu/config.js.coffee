@@ -11,4 +11,11 @@
 #= require_tree ./admin/models
 #= require_tree ./admin/collections
 #= require_tree ./admin/templates
+#= require ./admin/views/change_category_view
+#= require ./admin/views/change_group_view
+#= require ./admin/views/item_view
+#= require ./admin/views/item_menu_view
+#= require ./admin/views/category_view
+#= require ./admin/views/category_menu_view
+#= require ./admin/views/group_view
 #= require ./admin/views/menu_view

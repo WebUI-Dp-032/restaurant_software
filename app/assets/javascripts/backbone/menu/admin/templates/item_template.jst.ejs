@@ -1,0 +1,34 @@
+<div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#dishes" href="#_<%= name %>">
+              <%= name %>
+              </a>
+            </div>
+            <div id="_<%= name %>" class="accordion-body collapse">
+              <div class="accordion-inner">
+                
+                <div class="row">
+                  <div class="change-category btn-group edit-categories" data-toggle="buttons-radio"></div><br />
+
+                  <div class="span">
+                    <input type="text" class="dishes-name" value="<%= name %>"/>
+                  </div>
+
+                  
+                  
+                  <div class="span">
+                  <textarea rows="1" class="dishes-discription"><%= description %></textarea>
+                  </div>
+
+                  <div class="span">
+                    <input type="text" class="dishes-price" value="<%= price %>"/>
+                  </div>
+                  
+                  <div class="span">
+                    <button class="btn btn-warning btn-change-item">Change</button>
+                  </div>
+                  <div class="span">
+                    <button id="deleteItem" class="btn btn-danger btn-delete-item">Delete</button>
+                  </div>
+                </div>
+              </div>
+                
