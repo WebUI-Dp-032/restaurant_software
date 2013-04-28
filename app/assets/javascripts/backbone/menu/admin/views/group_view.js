@@ -7,7 +7,7 @@
     tagName: "li",
     template: JST['backbone/menu/admin/templates/group_template'],
     events: {
-        "click": "getCategories"
+      "click": "getCategories"
     },
 
     initialize: function() {
@@ -27,10 +27,11 @@
 
     addCategory: function(category) {
       console.log(category);
-      var view_head = new CategoryMenuView();
-      this.$("#add-category-form").html(view_head.render().el);
+      var view_head = new CategoryMenuView({model: category, 
+                                            collection: this.categories_collection});
+      $("#add-category-form").html(view_head.render().el);
       var view = new CategoryView({model: category});
-      this.$("#categories").append(view.render().el);
+      $("#categories").append(view.render().el);
       return this;
     },
 
@@ -40,7 +41,7 @@
       console.log("get categories - click to groups tab");
       console.log(this.categories_collection);
 
-      this.categories_collection.byGroup(this.model.get("name")).each(this.addCategory);
+      this.categories_collection.byGroup(this.model.get("name")).each(this.addCategory, this);
       return this;
     },
 
