@@ -7,7 +7,7 @@
     className: "accordion-group",
     template: JST['backbone/menu/admin/templates/item_template'],
     events: {
-        "click #btn-dishes": "getItems",
+        // "click #btn-dishes": "getItems",
         "click .btn-change-item": "saveItems",
         "click .btn-delete-item" : "delItem"
     },
@@ -32,17 +32,17 @@
         return this;
     },
 
-    addOne: function(item) {
-      var view = new ItemView({model: item});
-      $("#items .accordion").append(view.render().el);
-    },
+    // addOne: function(item) {
+    //   var view = new ItemView({model: item});
+    //   $("#items .accordion").append(view.render().el);
+    // },
 
-    getItems: function() {
-      var item_menu_view = new ItemMenuView();
-      $("#items").html(item_menu_view.render().el);
-      this.items_collection.byCategory(this.model.get("name")).each(this.addOne);
-      return this;
-    },
+    // getItems: function() {
+    //   var item_menu_view = new ItemMenuView();
+    //   $("#items").html(item_menu_view.render().el);
+    //   this.items_collection.byCategory(this.model.get("name")).each(this.addOne);
+    //   return this;
+    // },
 
     saveItems: function () {
    

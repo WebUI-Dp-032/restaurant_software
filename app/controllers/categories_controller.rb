@@ -57,6 +57,9 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
+    @category.items.each do |item|
+      item.update_attributes({attachment: params[:category][:name]})
+    end
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
