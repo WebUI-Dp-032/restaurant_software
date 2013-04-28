@@ -22,7 +22,8 @@
 		{name: "foods"},
         {name: "drinks"},
         {name: "desserts"},
-        {name: "karaoke"}
+        {name: "karaoke"},
+        {name: "unused"}
 	])
 
     Category.delete_all

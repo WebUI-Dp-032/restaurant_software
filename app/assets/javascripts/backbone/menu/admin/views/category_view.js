@@ -37,6 +37,7 @@
     },
 
     addItem: function(item) {
+      console.log(item);
       var view_head = new ItemMenuView();
       this.$("#add-dishes-form").html(view_head.render().el);
       var view = new ItemView({model: item});
@@ -44,16 +45,19 @@
     },
 
     getItems: function() {
+      var item_category = this.model.get("name");
       this.clean();
-
-      this.items_collection.byCategory(this.model.get("name")).each(this.addItem);
+      console.log(item_category);
+      this.items_collection.byCategory(item_category).each(this.addItem);
+      console.log(this);
       return this;
       
     },
 
     addGroup: function(group) {
+      var group_name = $.trim(this.$("#groups .active").text());
       var view = new ChangeGroupView({model: group});
-      $(".edit-groups").append(view.render().el);
+      $(".edit-groups").append(view.render(group_name).el);
     },
 
     getGroups: function() {
@@ -65,7 +69,6 @@
     saveEditedCategory: function () {
       var group_name = $.trim(this.$(".edit-groups .active").text());
       var category_name = $.trim(this.$(".category-name").val());
-      //this.model.set({attachment: group_name, name: category_name});
       this.model.save({attachment: group_name, name: category_name});
       Backbone.Mediator.pub("renderMenu", {});
       return this;

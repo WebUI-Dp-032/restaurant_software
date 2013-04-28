@@ -13,7 +13,6 @@
     initialize: function() {
       this.categories_collection = new CategoryCollection();
       this.categories_collection.on("change", this.getCategories, this);
-
       //this.categories_collection.reset(window.RS.Data.Categories);
       this.categories_collection.fetch();
 
@@ -26,7 +25,6 @@
     },
 
     addCategory: function(category) {
-      console.log(category);
       var view_head = new CategoryMenuView();
       this.$("#add-category-form").html(view_head.render().el);
       var view = new CategoryView({model: category});
@@ -37,9 +35,6 @@
     getCategories: function(name) {
       this.clean();
       this.setActiveTab();
-      console.log("get categories - click to groups tab");
-      console.log(this.categories_collection);
-
       this.categories_collection.byGroup(this.model.get("name")).each(this.addCategory);
       return this;
     },
