@@ -25,18 +25,17 @@
 
     renderOne: function(item) {
       var view = new OrderItemView({model: item});
-      $("#order-items").append(view.render().el);
+      this.$el.find("#order-items").append(view.render().el);
     },
 
     renderAll: function() {
-      self = this;
       this.collection.each(function(model) {
-        self.renderOne(model);
-      });
+        this.renderOne(model);
+      }, this);
     },
 
     clearView: function() {
-      $("#order-items").html("");
+      this.$el.find("#order-items").html("");
       this.collection.clear();
     },
 
@@ -51,7 +50,7 @@
     },
 
     saveFood: function(food) {
-      this.collection.addFood(food); // FIX!
+      this.collection.addFood(food);
     },
 
     loadFoods: function(order_id) {

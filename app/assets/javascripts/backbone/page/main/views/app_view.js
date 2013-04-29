@@ -27,7 +27,6 @@
       $("#container").html(this.template({name: window.RS.name}));
       $("#tables-container").append(this.tables_view.render().el);
       $("#menu-container").append(this.menu_view.render().el);
-      // this.menu_view.addAll();
       $("#order-container").append(this.foods_view.render().el);
       $("#order-module").append(this.total_view.render().el);
     }
