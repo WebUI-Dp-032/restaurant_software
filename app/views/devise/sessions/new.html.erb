@@ -1,36 +1,15 @@
-<div id="login-box">
-	<h2 class="centered">Sign in</h2>
 
-	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-	  
-		<table>
-			<tbody>
-				<tr>
-					<td>
-						<%= f.label :username %>
-					</td>
-					<td>
-						<%= f.text_field :username, :autofocus => true, :class => 'input-login' %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-							<%= f.label :password %>
-					</td>
-					<td>
-							<%= f.password_field :password %>
-					</td>
-				</tr>
-		
-				<tr>
-					<td colspan="2">
-							<%= f.submit "Sign in", :class => "btn btn-success btn-login" %>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-			
-	<% end %>
+  <div id="content" class="gradient">
 
-	
-</div>
+     <div id="form">
+           <p class="title">R-Soft</p>
+           <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+       
+       <p><%= f.text_field :username, :autofocus => true, :id => 'login' %></p>
+       
+       <p><%= f.password_field :password, :id => 'password', :size => '60' %></p>
+       
+       <p><%= f.submit "Sign in", :class => "gradient-grey", :id => 'button' %></p>
+    </div>
+    <% end %>
+  </div>
