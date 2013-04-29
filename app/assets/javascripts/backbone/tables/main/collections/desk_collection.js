@@ -9,8 +9,6 @@
     },
 
     busyTable: function(table_id) {
-      console.log("busy", "table", table_id);
-
       this.forEach(function(item) {
 
         if (item.get("id") == table_id) {
@@ -20,9 +18,6 @@
     },
 
     freeTable : function(table_id) {
-      console.log("free", "table", table_id);
-
-
        this.forEach(function(item) {
          if (item.get("id") == table_id) {
          item.save({status: "free"});

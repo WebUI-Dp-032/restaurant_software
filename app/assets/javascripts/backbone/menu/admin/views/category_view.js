@@ -27,6 +27,7 @@
       this.model.on('change', this.render, this);
       this.model.on('change:attachment', this.remove, this);
       this.model.on('destroy', this.remove, this);
+      this.items_collection.on('add', this.getItems, this);
     },
 
     render: function () {
@@ -37,19 +38,17 @@
     },
 
     addItem: function(item) {
-      console.log(item);
-      var view_head = new ItemMenuView();
-      this.$("#add-dishes-form").html(view_head.render().el);
       var view = new ItemView({model: item});
-      this.$("#items").append(view.render().el);
+      $("#items").append(view.render().el);
     },
 
     getItems: function() {
-      var item_category = this.model.get("name");
       this.clean();
-      console.log(item_category);
-      this.items_collection.byCategory(item_category).each(this.addItem);
-      console.log(this);
+      var view_head = new ItemMenuView({categories: this.collection.models,
+                                        collection: this.items_collection});
+      
+      $("#add-dishes-form").html(view_head.render().el);
+      this.items_collection.byCategory(this.model.get("name")).each(this.addItem, this);
       return this;
       
     },

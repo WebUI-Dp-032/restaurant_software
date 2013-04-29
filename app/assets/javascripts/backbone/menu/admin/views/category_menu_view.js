@@ -1,4 +1,4 @@
-(function (AdminCategoryView, CategoryCollection, CategoryModel, GroupCollection) {
+(function (CategoryModel) {
   window.RS.Views.AdminCategoryMenuView = Backbone.View.extend({
 
     tagName: "div",
@@ -10,11 +10,6 @@
     },
 
     initialize: function() {
-      // this.collection = new CategoryCollection(); 
-      // this.groups = new GroupCollection();
-      //this.collection.on('reset', this.renderOne, this);
-      // this.collection.fetch();
-      
     },
 
     render: function () {
@@ -30,16 +25,10 @@
         group = this.model.get('attachment');
         model = new CategoryModel({name: name, attachment:group});
         this.collection.create(model);
-        // this.view = new AdminCategoryView({model: model});
-        // $('.acord-list').append(this.view.render());
-        // this.collection.fetch();
         $("#show-category").hide("slow");
 
       }
     }
 
   });
-})(window.RS.Views.AdminCategoryView, 
-   window.RS.Collections.CategoryCollection,
-   window.RS.Models.CategoryModel,
-   window.RS.Collections.GroupCollection);
+})(window.RS.Models.CategoryModel);

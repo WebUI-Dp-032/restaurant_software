@@ -41,21 +41,21 @@
         ])
     Item.delete_all
     Item.create([
-            {id: 1, name: "soup", attachment: "hot-meals", description: "soup description", price: "10"},
-            {name: "borsch", attachment: "hot-meals", description: "borsch description", price: "15"},
-            {name: "sandwiches", attachment: "snacks", description: "sandwich description", price: "20"},
-            {name: "margarita", attachment: "pizza", description: "margarita description", price: "23"},
-            {name: "chicago-style", attachment: "pizza", description: "chicago-style description", price: "11"},
-            {name: "hawaiian", attachment: "pizza", description: "hawaiian description", price: "12"},
-            {name: "black", attachment: "tea", description: "black tea description", price: "14"},
-            {name: "green", attachment: "tea", description: "green tea description", price: "17"},
-            {name: "latte", attachment: "coffee", description: "latte description", price: "21"},
-            {name: "hoegaarden", attachment: "beer", description: "hoegaarden description", price: "20"},
-            {name: "absolut", attachment: "vodka", description: "absolut description", price: "152"},
-            {name: "strawberry", attachment: "icecream", description: "strawberry description", price: "14"},
-            {name: "napoleon", attachment: "cakes", description: "napoleon description", price: "40"},
-            {name: "yellow", attachment: "jelly", description: "yellow jelly description", price: "10"},
-            {name: "red", attachment: "jelly", description: "red jelly description", price: "10"}
+            {category_id: 1,name: "soup", attachment: "hot-meals", description: "soup description", price: "10"},
+            {category_id: 1,name: "borsch", attachment: "hot-meals", description: "borsch description", price: "15"},
+            {category_id: 2,name: "sandwiches", attachment: "snacks", description: "sandwich description", price: "20"},
+            {category_id: 3,name: "margarita", attachment: "pizza", description: "margarita description", price: "23"},
+            {category_id: 3,name: "chicago-style", attachment: "pizza", description: "chicago-style description", price: "11"},
+            {category_id: 3,name: "hawaiian", attachment: "pizza", description: "hawaiian description", price: "12"},
+            {category_id: 4,name: "black", attachment: "tea", description: "black tea description", price: "14"},
+            {category_id: 4,name: "green", attachment: "tea", description: "green tea description", price: "17"},
+            {category_id: 5,name: "latte", attachment: "coffee", description: "latte description", price: "21"},
+            {category_id: 6,name: "hoegaarden", attachment: "beer", description: "hoegaarden description", price: "20"},
+            {category_id: 7,name: "absolut", attachment: "vodka", description: "absolut description", price: "152"},
+            {category_id: 8,name: "strawberry", attachment: "icecream", description: "strawberry description", price: "14"},
+            {category_id: 9,name: "napoleon", attachment: "cakes", description: "napoleon description", price: "40"},
+            {category_id: 10,name: "yellow", attachment: "jelly", description: "yellow jelly description", price: "10"},
+            {category_id: 10,name: "red", attachment: "jelly", description: "red jelly description", price: "10"}
         ])
 
     User.delete_all

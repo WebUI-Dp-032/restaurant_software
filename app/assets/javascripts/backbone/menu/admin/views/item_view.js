@@ -32,17 +32,17 @@
         return this;
     },
 
-    addOne: function(item) {
-      var view = new ItemView({model: item});
-      $("#items .accordion").append(view.render().el);
-    },
+    // addOne: function(item) {
+    //   var view = new ItemView({model: item});
+    //   $("#items .accordion").append(view.render().el);
+    // },
 
-    getItems: function() {
-      var item_menu_view = new ItemMenuView();
-      $("#items").html(item_menu_view.render().el);
-      this.items_collection.byCategory(this.model.get("name")).each(this.addOne);
-      return this;
-    },
+    // getItems: function() {
+    //   var item_menu_view = new ItemMenuView();
+    //   $("#items").html(item_menu_view.render().el);
+    //   this.items_collection.byCategory(this.model.get("name")).each(this.addOne);
+    //   return this;
+    // },
 
     saveItems: function () {
    
@@ -60,7 +60,6 @@
     },
 
     addCategory: function(category) {
-      console.log(this.model);
       var category_name = this.model.get("attachment"),
           view = new ChangeCategoryView({model: category});
       $(".edit-categories").append(view.render(category_name).el);

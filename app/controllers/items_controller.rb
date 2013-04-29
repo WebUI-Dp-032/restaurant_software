@@ -41,7 +41,9 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
-
+    @category = Category.where({name: params[:item][:attachment]}).first
+    @item[:category_id] = @category[:id]
+    
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }

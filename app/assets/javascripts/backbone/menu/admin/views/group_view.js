@@ -13,10 +13,7 @@
     initialize: function() {
       this.categories_collection = new CategoryCollection();
       this.categories_collection.on("change", this.getCategories, this);
-      //this.categories_collection.reset(window.RS.Data.Categories);
       this.categories_collection.fetch();
-
-
     },
 
     render: function () {
@@ -25,11 +22,11 @@
     },
 
     addCategory: function(category) {
-      console.log(category);
       var view_head = new CategoryMenuView({model: category, 
                                             collection: this.categories_collection});
       $("#add-category-form").html(view_head.render().el);
-      var view = new CategoryView({model: category});
+      var view = new CategoryView({model: category,
+                                   collection: this.categories_collection});
       $("#categories").append(view.render().el);
       return this;
     },
@@ -37,7 +34,6 @@
     getCategories: function(name) {
       this.clean();
       this.setActiveTab();
-
       this.categories_collection.byGroup(this.model.get("name")).each(this.addCategory, this);
       return this;
     },

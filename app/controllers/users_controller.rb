@@ -26,10 +26,8 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(name: params[:name], \
-                            username: params[:username], \
-                            password: params[:password], \
-                            password_confirmation: params[:password_confirmation])
+    @user.delete
+    User.create(params[:user])
   end
 
   # DELETE /users/1
