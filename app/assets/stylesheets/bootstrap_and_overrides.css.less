@@ -98,15 +98,15 @@ html, body {
   margin: 10px 0 0 10px;
 }
 #menu .menu-dishes {
-	font-size: 20pt; 
-	margin-left:0px;
+  font-size: 20pt; 
+  margin-left:0px;
 }
 
 #menu .dish {
-	width:160px; 
-	margin:0; 
-	line-height: 30px;
-	word-wrap: break-word;
+  width:160px; 
+  margin:0; 
+  line-height: 30px;
+  word-wrap: break-word;
 
 }
 /*---------------*/
@@ -137,6 +137,14 @@ html, body {
 #order-module table tfoot tr td[colspan='2'] {
   padding-right: 24px;
   text-align: right;
+}
+.order-item {
+  border: 1px solid #999;
+}
+.order-item td {
+  border-top: 1px solid #bbb !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 /*Footer*/
 footer {
@@ -302,9 +310,18 @@ div {
 
 
 
-
-
-
+ul#menu {
+    & > div {
+        text-transform: uppercase;
+        color: #ccc;
+        background-color: #000;
+        margin: 0px 20px 0px 0px;
+        padding: 5px;
+        border: 2px solid #999;
+        border-radius: 10px;
+        font: 41px 'LeagueGothicRegular';
+    }
+}
 
 
 .title {
@@ -327,11 +344,11 @@ div {
   
   
 }
-p {
+p.login-page {
   top: 50px;
   margin: -11px;
 }
-input {
+input.login-page {
   border: 1px solid #999;
   font: 18px 'LeagueGothicRegular';
   padding: 0px 20px;
