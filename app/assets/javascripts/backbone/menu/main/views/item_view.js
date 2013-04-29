@@ -18,9 +18,11 @@
         Backbone.Mediator.pub("addFoodInOrder", {title: name, cost: price});
     },
     getItemDescription: function () {
+        console.log(this.model);
         var description = this.model.get("description"),
             name = this.model.get("name");
-        Backbone.Mediator.pub("popup", {description: description, image: "url", name: name});
+            image_url = this.model.get("image");
+        Backbone.Mediator.pub("popup", {description: description, image_url: image_url, name: name});
     }
 
   });

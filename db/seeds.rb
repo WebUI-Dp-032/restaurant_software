@@ -51,7 +51,7 @@
             {category_id: 4,name: "green", attachment: "tea", description: "green tea description", price: "17"},
             {category_id: 5,name: "latte", attachment: "coffee", description: "latte description", price: "21"},
             {category_id: 6,name: "hoegaarden", attachment: "beer", description: "hoegaarden description", price: "20"},
-            {category_id: 7,name: "absolut", attachment: "vodka", description: "absolut description", price: "152"},
+            {category_id: 7,name: "absolut", attachment: "vodka", description: "absolut description", image_url: "http://www.denichidesigns.com/wp-content/uploads/2012/10/Absolut-Vodka.jpeg", price: "152"},
             {category_id: 8,name: "strawberry", attachment: "icecream", description: "strawberry description", price: "14"},
             {category_id: 9,name: "napoleon", attachment: "cakes", description: "napoleon description", price: "40"},
             {category_id: 10,name: "yellow", attachment: "jelly", description: "yellow jelly description", price: "10"},

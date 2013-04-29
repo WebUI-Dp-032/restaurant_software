@@ -260,6 +260,15 @@ div.accordion-body.collapse table tbody tr td input[type="text"] {
 
 #show-category, #show-dishes{
 	display: none;
+
+}
+
+div#show-dishes > div.span {
+	margin: 0px;
+}
+
+.dishes-image {
+	width: 100px;
 }
 
 

@@ -48,6 +48,7 @@
       model.set({name: $.trim(this.$("#dishes-name").val()),
                  attachment: $.trim(this.$("#select-category").val()),
                  description: $.trim(this.$("#dishes-description").val()),
+                 image_url: $.trim(this.$("#dishes-image").val()),
                  price: $.trim(this.$("#dishes-price").val())});
 
       this.collection.create(model);

@@ -27,6 +27,7 @@
 
 
     render: function () {
+      console.log(this.model)
         this.$el.html(this.template(this.model.toJSON()));
         this.getCategories();
         return this;
@@ -46,11 +47,12 @@
 
     saveItems: function () {
    
-      var item = $.trim(this.$(".dishes-name").val());
-      var category = $.trim(this.$(".edit-categories .active").text());
-      var descr = $.trim(this.$(".dishes-discription").val());
-      var price = $.trim(this.$(".dishes-price").val());
-      this.model.save({name: item, attachment: category, description: descr, price: price});
+      var item = $.trim(this.$(".dishes-name").val()),
+          category = $.trim(this.$(".edit-categories .active").text()),
+          descr = $.trim(this.$(".dishes-discription").val()),
+          image_url = $.trim(this.$(".dishes-image").val()),
+          price = $.trim(this.$(".dishes-price").val());
+      this.model.save({name: item, attachment: category, description: descr, image_url: image_url, price: price});
       Backbone.Mediator.pub("renderMenu", {});
     },
 

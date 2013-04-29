@@ -19,10 +19,21 @@
                   <textarea rows="1" class="dishes-discription"><%= description %></textarea>
                   </div>
 
+
+                  <div class="span">              
+                    <input type="text" class="dishes-image" 
+                      <% if (typeof(image_url) != "undefined") { %>
+                    value="<%= image_url %>" 
+                    <% } %>
+                    placeholder="Image URL"/>
+                  </div>
+
                   <div class="span">
                     <input type="text" class="dishes-price" value="<%= price %>"/>
                   </div>
                   
+
+
                   <div class="span">
                     <button class="btn btn-warning btn-change-item">Change</button>
                   </div>

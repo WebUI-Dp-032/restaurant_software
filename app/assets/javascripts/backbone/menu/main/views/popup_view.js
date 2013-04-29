@@ -15,6 +15,7 @@
   },
 
   render: function(data) {
+    console.log(data);
     var view = this.$el.html(this.template(data));
     $("body").append($("<div></div>").addClass("shadow"));
     $("body").append(view);

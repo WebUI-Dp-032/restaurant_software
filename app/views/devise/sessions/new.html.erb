@@ -5,11 +5,11 @@
            <p class="login-page title">R-Soft</p>
            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
        
-       <p class="login-page"><%= f.text_field :username, :autofocus => true, :id => 'login' %></p>
+       <p class="login-page"><%= f.text_field :username, :autofocus => true, :id => 'login', :class => 'login-page' %></p>
        
-       <p class="login-page"><%= f.password_field :password, :id => 'password', :size => '60' %></p>
+       <p class="login-page"><%= f.password_field :password, :id => 'password', :size => '60', :class => 'login-page' %></p>
        
-       <p class="login-page"><%= f.submit "Sign in", :class => "gradient-grey", :id => 'button' %></p>
+       <p class="login-page"><%= f.submit "Sign in", :class => "gradient-grey login-page", :id => 'button' %></p>
     </div>
     <% end %>
   </div>

@@ -18,11 +18,11 @@
 		top: 100px;
 		left: 50%;
 		margin-left: -300px;
-		width: 520px;
+		min-width: 520px;
 		background: #eee no-repeat -200px -80px;
 		position: fixed;
 		z-index: 101;
-		padding: 30px 40px 34px;
+		padding: 30px 30px 10px 40px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		border-radius: 5px;
@@ -50,12 +50,17 @@
 
 	#close-description {
 		width: 50px;
-		right: 10px;
+		right: -16px;
+		top: -13px;
 		position: absolute;
-		top: 10px;
 	}
 
 	.icon-remove-sign {
 		font-size: 50px;
 	}
 	
+	.description-name {
+		font-size: 500%;
+		text-transform: uppercase;
+		margin: 0 30px;
+	}
