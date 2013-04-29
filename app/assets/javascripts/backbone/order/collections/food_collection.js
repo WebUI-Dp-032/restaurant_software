@@ -18,7 +18,7 @@
         model = this.where({title: food.title})[0];
         model.incrementFood();
       } else {
-        model = new FoodModel({order_id: food.order_id, // FIX !!
+        model = new FoodModel({order_id: food.order_id,
                                title: food.title,
                                cost: food.cost,
                                summary: food.cost});

@@ -29,7 +29,6 @@
 
 
     renderAll: function() {
-      console.log('renderall');
       this.collection.each(this.renderOne, this);
     }
 

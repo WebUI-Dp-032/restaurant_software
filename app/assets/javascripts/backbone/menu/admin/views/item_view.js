@@ -60,7 +60,6 @@
     },
 
     addCategory: function(category) {
-      console.log(this.model);
       var category_name = this.model.get("attachment"),
           view = new ChangeCategoryView({model: category});
       $(".edit-categories").append(view.render(category_name).el);
